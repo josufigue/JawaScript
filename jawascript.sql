@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 08-01-2020 a las 09:43:07
+-- Tiempo de generación: 08-01-2020 a las 10:05:46
 -- Versión del servidor: 10.4.11-MariaDB
 -- Versión de PHP: 7.4.1
 
@@ -32,7 +32,8 @@ CREATE TABLE `erabiltzailea` (
   `Id` int(11) NOT NULL,
   `Izena` varchar(50) COLLATE utf8_spanish_ci NOT NULL,
   `Pasahitza` varchar(18) COLLATE utf8_spanish_ci NOT NULL,
-  `Puntuazioa` int(11) NOT NULL
+  `Puntuazioa` int(11) NOT NULL,
+  `Jolastuta` tinyint(1) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
 
 -- --------------------------------------------------------
