@@ -1,3 +1,13 @@
 <ion-app>
-  <ion-router-outlet></ion-router-outlet>
+  <ion-content *ngIf="sesion">
+    <ion-label>Sesioa hasi</ion-label>
+    <ion-item>
+      <ion-input placeholder="Erabiltzaile izena"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-input type="password" placeholder="Pasahitza"></ion-input>
+    </ion-item>
+    <ion-button (click)="logear();">Login</ion-button>
+  </ion-content>
+  <ion-router-outlet *ngIf="login"></ion-router-outlet>
 </ion-app>
