@@ -1,31 +1,3 @@
 <ion-app>
-  <ion-content *ngIf="sesion">
-    <ion-grid>
-      <ion-row justify-content-center>
-        <ion-col align-self-center size-md="6" size-lg="5" size-xs="12">
-          <div text-center>
-            <h1>Logeatu zaitez</h1>
-          </div>
-          <div padding>
-            <ion-item>
-              <ion-input type="text" placeholder="Erabiltzailea"></ion-input>
-            </ion-item>
-    
-            <ion-item>
-              <ion-input type="password" placeholder="Pasahitza"></ion-input>
-            </ion-item>
-          </div>
-    
-          <div padding>
-            <ion-button size="large" (click)="logear();" expand="block">Login</ion-button>
-          </div>
-          <div text-right>
-           <a><p>Erabiltzailea sortu</p></a>
-          </div>
-
-        </ion-col>
-      </ion-row>
-    </ion-grid>
-  </ion-content>
-  <ion-router-outlet *ngIf="login"></ion-router-outlet>
+  <ion-router-outlet></ion-router-outlet>
 </ion-app>

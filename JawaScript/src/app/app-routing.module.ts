@@ -9,6 +9,10 @@ const routes: Routes = [
   {
     path: 'galdera',
     loadChildren: () => import('./galdera/galdera.module').then(m => m.GalderaPageModule)
+  },
+  {
+    path: 'login',
+    loadChildren: () => import('./login/login.module').then( m => m.LoginPageModule)
   }
 ];
 @NgModule({
