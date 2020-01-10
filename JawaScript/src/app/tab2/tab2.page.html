@@ -5,5 +5,14 @@
     </ion-title>
   </ion-toolbar>
 </ion-header>
+<div class="portada">
+<ion-content>
+ 
+  <ion-list>
+    <ul >
+    <li ion-item *ngFor="let item of ranking" icon-start><br>
+      {{ item.title }} 
+    </li></ul>
+  </ion-list>
 
-<ion-content></ion-content>
+</ion-content></div>
