@@ -6,4 +6,12 @@
   </ion-toolbar>
 </ion-header>
 
-<ion-content></ion-content>
+<ion-content>
+  <ion-list>
+    <ul >
+    <li ion-item *ngFor="let item of ranking" (click)="openNavDetailsPage(item)" icon-start><br>
+      {{ item.title }} 
+    </li></ul>
+  </ion-list>
+
+</ion-content>
