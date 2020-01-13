@@ -1,6 +1,6 @@
 export interface TaskI {
-    Id?:number;
+    Id?:string;
     Izena:string;
     Puntuazioa:number;
-    ErabiltzaileId:number;
+    erabiltzaileId:string;
 }

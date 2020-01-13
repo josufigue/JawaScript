@@ -20,10 +20,10 @@ const routes: Routes = [
   },
   {
     path: 'ranking/:id',
-    loadChildren: () => import('./ranking/ranking.module').then( m => m.RankingPageModule)
+    loadChildren: './ranking/ranking.module#RankingPageModule'
   },
   { path:'ranking', 
-    loadChildren:() => import('./ranking/ranking.module').then( m => m.RankingPageModule)
+    loadChildren: './ranking/ranking.module#RankingPageModule'
   }
 
 ];
