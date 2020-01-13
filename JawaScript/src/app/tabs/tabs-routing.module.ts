@@ -38,6 +38,16 @@ const routes: Routes = [
         ]
       },
       {
+        path: 'ranking',
+        children: [
+          {
+            path: '',
+            loadChildren: () =>
+              import('../ranking/ranking.module').then(m => m.RankingPageModule)
+          }
+        ]
+      },
+      {
         path: 'login',
         children: [
           {
