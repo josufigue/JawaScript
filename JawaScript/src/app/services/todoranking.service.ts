@@ -3,17 +3,17 @@ import { Injectable } from '@angular/core';
 import { AngularFirestore, AngularFirestoreCollection } from 'angularfire2/firestore';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
-import { TaskI } from '../models/task.interface'
+import { rankingTask } from '../models/task.interface'
 
 @Injectable({
   providedIn: 'root'
 })
 export class TodorankingService {
-  private rankingCollection: AngularFirestoreCollection<TaskI>;
-  private ranking: Observable<TaskI[]>;
+  private rankingCollection: AngularFirestoreCollection<rankingTask>;
+  private ranking: Observable<rankingTask[]>;
 
   constructor(db: AngularFirestore) {
-    this.rankingCollection = db.collection<TaskI>('ranking');
+    this.rankingCollection = db.collection<rankingTask>('ranking');
     this.ranking = this.rankingCollection.snapshotChanges().pipe(map(
       actions => {
         return actions.map( a => {
@@ -29,14 +29,14 @@ export class TodorankingService {
       return this.ranking;
     }
     getRanking(id: string){
-      return this.rankingCollection.doc<TaskI>(id).valueChanges();
+      return this.rankingCollection.doc<rankingTask>(id).valueChanges();
     }
 
-    updateRanking(ranking:TaskI, id: string){
+    updateRanking(ranking:rankingTask, id: string){
       return this.rankingCollection.doc(id).update(ranking)
     }
 
-    addRanking(ranking: TaskI){
+    addRanking(ranking: rankingTask){
       return this.rankingCollection.add(ranking);
     }
     

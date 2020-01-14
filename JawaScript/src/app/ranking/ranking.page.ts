@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 
-import { TaskI } from '../models/task.interface';
+import { rankingTask } from '../models/task.interface';
 import { TodorankingService } from '../services/todoranking.service'
 @Component({
   selector: 'app-ranking',
@@ -9,7 +9,7 @@ import { TodorankingService } from '../services/todoranking.service'
 })
 export class RankingPage implements OnInit {
 
-  ranking: TaskI[];
+  ranking: rankingTask[];
   constructor(private rankingService: TodorankingService) { }
 
   ngOnInit() {

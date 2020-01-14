@@ -7,10 +7,6 @@ const routes: Routes = [
   {
     path: '',
     component: RankingPage
-  },
-  {
-    path: 'ranking',
-    loadChildren: () => import('./ranking/ranking.module').then( m => m.RankingPageModule)
   }
 ];
 

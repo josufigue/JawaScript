@@ -19,12 +19,15 @@ const routes: Routes = [
     loadChildren: () => import('./register/register.module').then( m => m.RegisterPageModule)
   },
   {
-    path: 'ranking/:id',
-    loadChildren: './ranking/ranking.module#RankingPageModule'
+    path: 'rankinga/:id',
+    loadChildren: './ranking/ranking/ranking.module#RankingPageModule'
   },
   { path:'ranking', 
     loadChildren: './ranking/ranking.module#RankingPageModule'
-  }
+  },
+  { path:'rankingD', 
+    loadChildren: './ranking/ranking/ranking.module#RankingPageModule'
+  }  
 
 ];
 @NgModule({

@@ -1,4 +1,4 @@
-export interface TaskI {
+export interface rankingTask {
     Id?:string;
     Izena:string;
     Puntuazioa:number;
