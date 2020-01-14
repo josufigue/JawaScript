@@ -1,0 +1,29 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>
+      Ranking Detail
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+  <ion-content>
+    <ion-list>
+        <ion-item *ngIf="rankingitem">
+          <ion-label>
+            {{rankingitem.Id}}
+          </ion-label><br/>
+          <ion-label>
+            {{rankingitem.Izena}}
+          </ion-label><br/>
+          <ion-label>
+            {{rankingitem.Puntuazioa}}
+          </ion-label>
+        </ion-item>
+    </ion-list>
+     <!-- <ion-button expand="full" (click)="saveAll()">Save</ion-button> -->
+    <ion-fab color="danger" vertical="bottom" horizontal="end" slot="fixed">
+      <ion-fab-button color="danger" routerLink="/" routerDirection="forward">
+        <ion-icon name="trash"></ion-icon>
+      </ion-fab-button>
+    </ion-fab>
+  </ion-content>
