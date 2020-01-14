@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
+import { gald } from '../models/task.interface';
+import { TodogalderakService } from '../services/todogalderak.service'
 @Component({
   selector: 'app-galdera',
   templateUrl: './galdera.page.html',
@@ -7,9 +9,14 @@ import { Component, OnInit } from '@angular/core';
 })
 export class GalderaPage implements OnInit {
 
-  constructor() { }
+  galderak: gald[];
+  constructor(private galderakService: TodogalderakService) { }
 
   ngOnInit() {
+    this.galderakService.getAllGalderak().subscribe( res =>{
+      this.galderak = res;
+      console.log('Tareas',res)}
+    );
   }
   check(izena){
     if(izena == 'olaia'){

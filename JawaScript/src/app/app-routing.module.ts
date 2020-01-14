@@ -23,11 +23,11 @@ const routes: Routes = [
   {
     path: 'ranking/:id',
     loadChildren: () => import('./ranking/ranking.module').then( m => m.RankingPageModule),
-    canActivate: [AuthGuard]
+    //canActivate: [AuthGuard]
   },
   { path:'ranking', 
     loadChildren:() => import('./ranking/ranking.module').then( m => m.RankingPageModule),
-    canActivate: [AuthGuard]
+    //canActivate: [AuthGuard]
   }
 
 ];

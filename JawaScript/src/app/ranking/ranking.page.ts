@@ -9,12 +9,13 @@ import { TodorankingService } from '../services/todoranking.service'
 })
 export class RankingPage implements OnInit {
 
-  todosRanking: TaskI[];
+  ranking: TaskI[];
   constructor(private rankingService: TodorankingService) { }
 
   ngOnInit() {
-    this.rankingService.getAllRanking().subscribe(res =>
-      this.todosRanking = res
+    this.rankingService.getAllRanking().subscribe( res =>{
+      this.ranking = res;
+      console.log('Tareas',res)}
     );
   }
 
