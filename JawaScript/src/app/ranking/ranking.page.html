@@ -10,7 +10,7 @@
   <ion-content>
     <ion-list>
       <ion-item-sliding *ngFor="let rankingitem of ranking">
-        <ion-item lines="inset" button [routerLink]="['/ranking', rankingitem.id]">
+        <ion-item lines="inset" button [routerLink]="['/rankinga', rankingitem.id]">
           <ion-label>
             {{rankingitem.Id}}&nbsp;-&nbsp;{{rankingitem.Izena}}&nbsp;{{rankingitem.Puntuazioa}}  
           </ion-label>

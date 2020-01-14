@@ -21,14 +21,15 @@ const routes: Routes = [
     loadChildren: () => import('./register/register.module').then( m => m.RegisterPageModule)
   },
   {
-    path: 'ranking/:id',
-    loadChildren: () => import('./ranking/ranking.module').then( m => m.RankingPageModule),
-    canActivate: [AuthGuard]
+    path: 'rankinga/:id',
+    loadChildren: './ranking/ranking/ranking.module#RankingPageModule'
   },
   { path:'ranking', 
-    loadChildren:() => import('./ranking/ranking.module').then( m => m.RankingPageModule),
-    canActivate: [AuthGuard]
-  }
+    loadChildren: './ranking/ranking.module#RankingPageModule'
+  },
+  { path:'rankingD', 
+    loadChildren: './ranking/ranking/ranking.module#RankingPageModule'
+  }  
 
 ];
 @NgModule({
