@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
+import { AuthGuard } from './guards/auth.guard';
 
 const routes: Routes = [
   {
@@ -8,7 +9,8 @@ const routes: Routes = [
   },
   {
     path: 'galdera',
-    loadChildren: () => import('./galdera/galdera.module').then(m => m.GalderaPageModule)
+    loadChildren: () => import('./galdera/galdera.module').then(m => m.GalderaPageModule),
+    canActivate: [AuthGuard]
   },
   {
     path: 'login',

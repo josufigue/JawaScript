@@ -1,29 +1,34 @@
 <ion-content>
   <ion-grid>
-    <ion-row justify-content-center>
-      <ion-col align-self-center size-md="6" size-lg="5" size-xs="12">
-        <div text-center>
+    <ion-row class="ion-justify-content-center">
+      <ion-col class="ion-align-self-center" size-md="6" size-lg="5" size-xs="12">
+        <div class="ion-text-center">
           <img src="../../assets/icon/LogoGame.png">
           <h1>Logeatu zaitez</h1>
         </div>
-        <div padding>
+        <div class="ion-padding">
           <ion-item>
-            <ion-input type="text" placeholder="Erabiltzailea"></ion-input>
+            <ion-input type="text" [(ngModel)]="user.email" placeholder="Email-a"></ion-input>
           </ion-item>
           <ion-item>
-            <ion-input type="text" placeholder="Email-a"></ion-input>
-          </ion-item>
-          <ion-item>
-            <ion-input type="password" placeholder="Pasahitza"></ion-input>
+            <ion-input type="password" [(ngModel)]="user.password" placeholder="Pasahitza"></ion-input>
           </ion-item>
 
-          <ion-item>
+          <!--<ion-item>
             <ion-input type="password" placeholder="Pasahitza Errepikatu"></ion-input>
-          </ion-item>
+          </ion-item>-->
+          <!--<ion-item-divider>
+            <ion-button size="large" (click)="onRegister">Register</ion-button>
+            <ion-button size="large" href="/login">Register</ion-button>
+          </ion-item-divider>-->
         </div>
   
-        <div padding>
-          <ion-button size="large" href="/tabs/tab1" expand="block">Erabiltzailea sortu</ion-button>
+        <div class="ion-padding">
+          <ion-button size="large" (click)="onRegister()" expand="block">Erabiltzailea sortu</ion-button>
+          
+        </div>
+        <div class="ion-text-right">
+          <a routerLink="/login"><p>Jadanik kontua duzu?</p></a>
         </div>
      
 
