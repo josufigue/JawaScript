@@ -5,14 +5,14 @@
 </ion-header>
 
 <ion-content><ion-item-sliding *ngFor="let galderakitem of galderak">
-  <p lines="inset" button [routerLink]="['/galderak', galderakitem.Galdera]">
-    {{galderakitem.Galdera}} </p>
-  <ion-item lines="inset" button [routerLink]="['/galderak', galderakitem.Eranztun1]">
-    {{galderakitem.Erantzun1}}</ion-item>
-  <ion-item lines="inset" button [routerLink]="['/galderak', galderakitem.Eranztun1]">
-    {{galderakitem.Erantzun2}}</ion-item>
-  <ion-item lines="inset" button [routerLink]="['/galderak', galderakitem.Eranztun1]">
-    {{galderakitem.Erantzun3}}</ion-item>
+  <b><p lines="inset" button [routerLink]="['/galderak', galderakitem.Galdera]">
+    {{galderakitem.Galdera}} </p></b>
+  <ion-button lines="inset" button [routerLink]="['/galderak', galderakitem.Eranztun1]">
+    {{galderakitem.Erantzun1}}</ion-button>
+  <ion-button lines="inset" button [routerLink]="['/galderak', galderakitem.Eranztun1]">
+    {{galderakitem.Erantzun2}}</ion-button>
+  <ion-button lines="inset" button [routerLink]="['/galderak', galderakitem.Eranztun1]">
+    {{galderakitem.Erantzun3}}</ion-button>
   
 </ion-item-sliding>
 
