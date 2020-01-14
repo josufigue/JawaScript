@@ -4,9 +4,16 @@
   </ion-toolbar>
 </ion-header>
 
-<ion-content>
-<p>Como se llama nuestra tutora?</p>
-<ion-button size="large" (click)="check('idoia')" expand="block">Idoia</ion-button>
-<ion-button size="large" (click)="check('izaskun')" expand="block">Izaskun</ion-button>
-<ion-button size="large" (click)="check('olaia')" expand="block">Olaia</ion-button>
+<ion-content><ion-item-sliding *ngFor="let galderakitem of galderak">
+  <p lines="inset" button [routerLink]="['/galderak', galderakitem.Galdera]">
+    {{galderakitem.Galdera}} </p>
+  <ion-item lines="inset" button [routerLink]="['/galderak', galderakitem.Eranztun1]">
+    {{galderakitem.Erantzun1}}</ion-item>
+  <ion-item lines="inset" button [routerLink]="['/galderak', galderakitem.Eranztun1]">
+    {{galderakitem.Erantzun2}}</ion-item>
+  <ion-item lines="inset" button [routerLink]="['/galderak', galderakitem.Eranztun1]">
+    {{galderakitem.Erantzun3}}</ion-item>
+  
+</ion-item-sliding>
+
 </ion-content>
