@@ -22,13 +22,16 @@ const routes: Routes = [
   },
   {
     path: 'rankinga/:id',
-    loadChildren: './ranking/ranking/ranking.module#RankingPageModule'
+    loadChildren: './ranking/ranking/ranking.module#RankingPageModule',
+    canActivate: [AuthGuard]
   },
   { path:'ranking', 
-    loadChildren: './ranking/ranking.module#RankingPageModule'
+    loadChildren: './ranking/ranking.module#RankingPageModule',
+    canActivate: [AuthGuard]
   },
   { path:'rankingD', 
-    loadChildren: './ranking/ranking/ranking.module#RankingPageModule'
+    loadChildren: './ranking/ranking/ranking.module#RankingPageModule',
+    canActivate: [AuthGuard]
   }  
 
 ];

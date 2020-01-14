@@ -15,6 +15,7 @@ export class Tab3Page {
 
   constructor(private authSvc: AuthService, private router: Router, private afAuth: AngularFireAuth) {
     this.username = firebase.auth().currentUser.email;
+    this.username = this.username.split('@')[0];
   }
 
   
