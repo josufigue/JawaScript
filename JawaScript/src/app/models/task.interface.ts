@@ -7,7 +7,6 @@ export interface rankingTask {
 export interface gald {
     Erantzun1:string;
     Erantzun2:string;
-    Erantzun3:string;
     ErantzunZuzena:string;
     Galdera:string;
 }
