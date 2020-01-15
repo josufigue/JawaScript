@@ -1,22 +1,26 @@
-<ion-header >
-  <ion-toolbar> 
-    <ion-title id="hola"><div><p id="letra">5 Minutu!</p></div>
-    
-     
-    </ion-title>  
+<ion-header>
+  <ion-toolbar>
+    <ion-title id="hola">
+      <div>
+        <p id="letra">5 Minutu!</p>
+      </div>
+
+
+    </ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content class="header-md">
-<div class="portada">
+  <div class="portada">
+    <div class="punto">
+      <img *ngIf="isProba; else elseBlock" class="top1" src="../../assets/icon/coratickr.png">
+      <ng-template #elseBlock><img class="top1" src="../../assets/icon/coratickx.png"></ng-template>
+      <ion-label>Puntuazioa</ion-label>
+    </div>
 
-<img *ngIf="isProba; else elseBlock" class="top1" src="../../assets/icon/coratickr.png">
-<ng-template #elseBlock><img class="top1" src="../../assets/icon/coratickx.png"></ng-template>
-
-
-<a routerLink="/galdera"><img src="../../assets/icon/img12.png"></a><br>
-<img class="img1" src="../../assets/icon/img1.PNG">
-
-
-</div>
+    <div class="ion-text-center">
+      <a routerLink="/galdera"><img src="../../assets/icon/img12.png"></a><br>
+      <img src="../../assets/icon/img1.PNG">
+    </div>
+  </div>
 </ion-content>

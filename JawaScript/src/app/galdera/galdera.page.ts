@@ -25,5 +25,4 @@ export class GalderaPage implements OnInit {
       alert("ohhh, erantzun okerra");
     }
   }
-
 }
