@@ -1,5 +1,7 @@
 {
   "name": "JawaScript",
-  "integrations": {},
+  "integrations": {
+    "cordova": {}
+  },
   "type": "angular"
 }
