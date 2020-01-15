@@ -15,8 +15,7 @@ export class RankingPage implements OnInit {
   ngOnInit() {
     this.rankingService.getAllRanking().subscribe( res =>{
       this.ranking = res;
-      console.log('Tareas',res)}
-    );
+    });
   }
 
 }

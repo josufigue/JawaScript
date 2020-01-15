@@ -10,7 +10,8 @@
 <ion-content class="header-md">
 <div class="portada">
 
-<img class="top1" src="../../assets/icon/coratickr.png">
+<img *ngIf="isProba; else elseBlock" class="top1" src="../../assets/icon/coratickr.png">
+<ng-template #elseBlock><img class="top1" src="../../assets/icon/coratickx.png"></ng-template>
 
 
 <a href="/galdera"><img src="../../assets/icon/img12.png"></a><br>

@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import * as firebase from 'firebase/app';
 
 @Component({
   selector: 'app-tab1',
@@ -7,6 +8,15 @@ import { Component } from '@angular/core';
 })
 export class Tab1Page {
 
-  constructor() {}
+  username;
+  isProba = true;
+
+  constructor() {
+    this.username = firebase.auth().currentUser.email;
+    this.username = this.username.split('@')[0];
+    if(this.username == "proba"){
+      this.isProba = false;
+    }
+  }
 
 }

@@ -13,16 +13,15 @@ export class GalderaPage implements OnInit {
   constructor(private galderakService: TodogalderakService) { }
 
   ngOnInit() {
-    this.galderakService.getAllGalderak().subscribe( res =>{
+    this.galderakService.getAllGalderak().subscribe(res => {
       this.galderak = res;
-      console.log('Tareas',res)}
-    );
+    });
   }
-  check(izena){
-    if(izena == 'olaia'){
+  check(izena) {
+    if (izena == 'olaia') {
       alert("Oso ondo!");
     }
-    else{
+    else {
       alert("ohhh, erantzun okerra");
     }
   }
