@@ -69,6 +69,8 @@ export class AuthService {
       case 'Password should be at least 6 characters':
         errorea = 'Sartutako pasahitza 6 karakterekoa izan behar da gutxienez';
         break;
+      case 'The email address is already in use by another account.':
+        errorea = 'Sartutako emaila jadanik erabitzen da'
     }
     const toast = await this.toastController.create({
       message:  errorea,
