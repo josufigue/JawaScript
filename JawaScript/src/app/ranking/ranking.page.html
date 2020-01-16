@@ -1,7 +1,7 @@
-<ion-header>
-  <ion-toolbar>
+<ion-header  id="hola">
+  <ion-toolbar >
     <ion-title id="hola">
-      Ranking
+      <div><p id="letra">Ranking</p></div>
     </ion-title>
   </ion-toolbar>
 </ion-header>
@@ -12,7 +12,7 @@
       <ion-item-sliding *ngFor="let rankingitem of ranking">
         <ion-item lines="inset" button [routerLink]="['/rankinga', rankingitem.id]">
           <ion-label>
-            {{rankingitem.Id}}&nbsp;-&nbsp;{{rankingitem.Izena}}&nbsp;{{rankingitem.Puntuazioa}}  
+            {{rankingitem.Id}}&nbsp;-&nbsp;{{rankingitem.Izena}}&nbsp;-&nbsp;{{rankingitem.Puntuazioa}}  
           </ion-label>
         </ion-item>
         <!-- <ion-item-options side="end">
