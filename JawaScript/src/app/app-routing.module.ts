@@ -10,7 +10,7 @@ const routes: Routes = [
   {
     path: 'galdera',
     loadChildren: () => import('./galdera/galdera.module').then(m => m.GalderaPageModule),
-    canActivate: [AuthGuard]
+    //canActivate: [AuthGuard]
   },
   {
     path: 'login',
