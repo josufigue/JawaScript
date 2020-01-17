@@ -4,6 +4,7 @@ import { rankingTask } from '../../models/task.interface';
 import { TodorankingService } from '../../services/todoranking.service';
 import { ActivatedRoute } from '@angular/router';
 import { NavController, LoadingController } from '@ionic/angular';
+
 @Component({
   selector: 'app-ranking',
   templateUrl: './ranking.page.html',

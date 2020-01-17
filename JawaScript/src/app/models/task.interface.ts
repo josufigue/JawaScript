@@ -5,6 +5,7 @@ export interface rankingTask {
     erabiltzaileId:string;
 }
 export interface gald {
+    id?:string;
     Erantzun1:string;
     Erantzun2:string;
     ErantzunZuzena:string;
