@@ -5,11 +5,19 @@
     </ion-title>
   </ion-toolbar>
 </ion-header>
-
+    <div class="card">
+      <div class="header">
+        <div class="avatar">
+        
+          <img src="../../assets/icon/LogoGame.png" alt="">
+        </div>
+      </div>
+    </div>
   <ion-content>
+
     <ion-list>
-        <ion-item *ngIf="rankingitem">
-          <ion-label>
+ 
+          <ion-label class="klk">
             {{rankingitem.Id}}
           </ion-label><br/>
           <ion-label>
@@ -18,7 +26,7 @@
           <ion-label>
             {{rankingitem.Puntuazioa}}
           </ion-label>
-        </ion-item>
+       
     </ion-list>
      <!-- <ion-button expand="full" (click)="saveAll()">Save</ion-button> -->
     <ion-fab color="danger" vertical="bottom" horizontal="end" slot="fixed">
