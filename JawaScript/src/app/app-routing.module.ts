@@ -32,9 +32,15 @@ const routes: Routes = [
   { path:'rankingD', 
     loadChildren: './ranking/ranking/ranking.module#RankingPageModule',
     canActivate: [AuthGuard]
-  },   {
+  },   
+  {
     path: 'add',
     loadChildren: () => import('./add/add.module').then( m => m.AddPageModule)
+  },
+  {
+    path: 'tabs',
+    loadChildren: () => import('./tabs/tabs.module').then( m => m.TabsPageModule),
+    canActivate: [AuthGuard]
   }
  
 

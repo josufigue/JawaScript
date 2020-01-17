@@ -4,6 +4,8 @@ import { gald } from '../models/task.interface';
 import { TodogalderakService } from '../services/todogalderak.service'
 import { delay } from 'rxjs/operators';
 import { LoadingController } from '@ionic/angular';
+import { Router } from '@angular/router';
+import { Subscription } from 'rxjs';
 @Component({
   selector: 'app-galdera',
   templateUrl: './galdera.page.html',
@@ -14,35 +16,33 @@ export class GalderaPage implements OnInit {
   private galderak: gald[];
   private ids = [];
   private i: number;
+  primerRandom;
   loading;
-  constructor(private galderakService: TodogalderakService, private loadingController: LoadingController) { }
+  constructor(private galderakService: TodogalderakService, private loadingController: LoadingController, private router: Router) { }
 
   ngOnInit() {
-    this.galderakService.getAllGalderak().subscribe(res => {
-      this.galderak = res;
-    });
-    (async () => {
+    this.galderakService.getAllGalderak().subscribe(res => {this.galderak = res;
+      this.primerRandom = (Math.floor(Math.random() * this.galderak.length) + 1);
+    console.log(this.galderak);
+    this.randomOrderAnswer(this.primerRandom);
+  }
+    );
+    /*(async () => {
       this.loading = await this.loadingController.create({
         message: 'Loading...'
       });
-      await delay(3000);
       await this.loading.present();
 
       var primerRandom = (Math.floor(Math.random() * this.galderak.length) + 1);
       await this.randomOrderAnswer(primerRandom);
 
-      console.log(this.galderak);
-    })();
+    })();*/
+  }
+  mensaje(){
+    console.log("Estoy despues del subscribe");
   }
 
-  
-
-  delay(ms: number) {
-    return new Promise(resolve => setTimeout(resolve, ms));
-  }
-
-  async randomOrderAnswer(primerRandom) {
-    await this.loading.present();
+  randomOrderAnswer(primerRandom) {
     this.ids.push(this.galderak[primerRandom].id);
     console.log(this.ids);
     document.getElementById("galderaP").textContent = this.galderak[primerRandom].Galdera;
@@ -78,17 +78,15 @@ export class GalderaPage implements OnInit {
         document.getElementById("option3btn").textContent = this.galderak[primerRandom].Erantzun2;
         break;
     }
-    await this.loading.dismiss();
     console.log(this.ids.length);
   }
 
   clickAnswer() {
     (async () => {
-      await this.loading.present();
+      //await this.loading.present();
       
 
       this.i = this.ids.length - 1;
-      console.log(this.galderak);
       for (this.i; this.i < 9; this.i++) {
         var primerRandom = (Math.floor(Math.random() * this.galderak.length) + 1);
         if (this.ids.includes(this.galderak[primerRandom].id)) {
@@ -98,6 +96,9 @@ export class GalderaPage implements OnInit {
           this.randomOrderAnswer(primerRandom);
           break;
         }
+      }
+      if(this.ids.length==10){
+        this.router.navigateByUrl('/tabs/tab1');
       }
     })();
   }

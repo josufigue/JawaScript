@@ -19,4 +19,8 @@ export class RankingPage implements OnInit {
     console.log(this.rankingService);
   }
 
+  botonPlus(){
+    window.location.reload();
+  }
+
 }
