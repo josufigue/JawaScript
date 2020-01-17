@@ -16,7 +16,7 @@ export class RankingPage implements OnInit {
     this.rankingService.getAllRanking().subscribe( res =>{
       this.ranking = res;
     });
-    console.log(this.rankingService);
+    console.log('aaa',this.ranking);
   }
 
   botonPlus(){

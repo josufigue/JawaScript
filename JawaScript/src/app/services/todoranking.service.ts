@@ -28,6 +28,7 @@ export class TodorankingService {
     getAllRanking(){
       return this.ranking;
     }
+    
     getRanking(id: string){
       return this.rankingCollection.doc<rankingTask>(id).valueChanges();
     }
