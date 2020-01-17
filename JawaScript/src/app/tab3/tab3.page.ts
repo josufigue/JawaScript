@@ -3,6 +3,10 @@ import { Router } from '@angular/router';
 import { AngularFireAuth } from '@angular/fire/auth';
 import { AuthService } from '../services/auth.service';
 import * as firebase from 'firebase/app';
+import { rankingTask } from '../models/task.interface';
+import { ErabiltzaileakService } from '../services/erabiltzaileak.service';
+import { delay } from 'rxjs/operators';
+import { LoadingController } from '@ionic/angular';
 
 @Component({
   selector: 'app-tab3',
@@ -11,13 +15,45 @@ import * as firebase from 'firebase/app';
 })
 export class Tab3Page {
 
+  private erabiltzaile: rankingTask[];
   username;
+  Izena;
+  puntuazioa;
+  gmail;
 
-  constructor(private authSvc: AuthService, private router: Router, private afAuth: AngularFireAuth) {
-    this.username = firebase.auth().currentUser.email;
-    this.username = this.username.split('@')[0];
+  constructor(private rankingService: ErabiltzaileakService, private loadingController: LoadingController, private authSvc: AuthService, private router: Router, private afAuth: AngularFireAuth) {
   }
 
+  ngOnInit(){
+    this.rankingService.getAllErabiltzaile().subscribe(res => {
+      this.erabiltzaile = res;
+    });
+    // var lista = this.erabiltzaile.length;
+
+    (async () => {
+      const loading = await this.loadingController.create({
+        message: 'Loading...'
+      });
+      await loading.present();
+    console.log(this.erabiltzaile);
+    this.comprobar();
+    await loading.dismiss();
+      
+    })();
+  }
+
+  comprobar(){
+    for(var x=0; x< this.erabiltzaile.length; x++){
+      if(this.erabiltzaile[x].erabiltzaileId == firebase.auth().currentUser.uid){
+        this.gmail=this.erabiltzaile[x].Id;
+        this.Izena=this.erabiltzaile[x].Izena;
+        this.puntuazioa=this.erabiltzaile[x].Puntuazioa;
+        console.log(this.gmail);
+        break;
+      }
+
+    }
+  }
   
   
   
