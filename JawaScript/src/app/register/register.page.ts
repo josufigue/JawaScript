@@ -27,7 +27,7 @@ export class RegisterPage implements OnInit {
   }
 
   async onRegister(){
-    if(document.getElementById("pss").textContent != document.getElementById("pssr").textContent){
+    if(document.getElementById("pss").textContent == document.getElementById("pssr").textContent){
       const user = await this.authSvc.onRegister(this.user);
       if(user){
         console.log('Successfully created user!');
