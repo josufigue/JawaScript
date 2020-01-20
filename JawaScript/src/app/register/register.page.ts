@@ -1,7 +1,7 @@
-import { Component, OnInit, NgModule  } from '@angular/core';
+import { Component, OnInit, NgModule } from '@angular/core';
 import { Router } from '@angular/router';
 import { AuthService } from '../services/auth.service';
-import { User } from '../shared/user.class'; 
+import { User } from '../shared/user.class';
 import { rankingTask } from '../models/task.interface';
 import { TodorankingService } from '../services/todoranking.service';
 import * as firebase from 'firebase/app';
@@ -26,26 +26,26 @@ export class RegisterPage implements OnInit {
   ngOnInit() {
   }
 
-  async onRegister(){
-    if(document.getElementById("pss").textContent == document.getElementById("pssr").textContent){
+  async onRegister() {
+    if (document.getElementById("pss").textContent == document.getElementById("pssr").textContent) {
       const user = await this.authSvc.onRegister(this.user);
-      if(user){
+      if (user) {
         console.log('Successfully created user!');
         this.inicialranking();
         this.router.navigateByUrl('/tabs/tab1');
       }
     }
-    else{
+    else {
       const toast = await this.toastController.create({
-        message:  "Pasahitzak ez dira berdinak",
+        message: "Pasahitzak ez dira berdinak",
         duration: 1000,
         position: "middle",
       });
-    toast.present();
+      toast.present();
     }
   }
 
-  inicialranking(){
+  inicialranking() {
     this.rankingitem.Id = firebase.auth().currentUser.email;
     this.rankingitem.erabiltzaileId = firebase.auth().currentUser.uid;
     this.rankingitem.Izena = firebase.auth().currentUser.email.split('@')[0];

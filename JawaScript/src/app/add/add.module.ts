@@ -17,4 +17,4 @@ import { AddPage } from './add.page';
   ],
   declarations: [AddPage]
 })
-export class AddPageModule {}
+export class AddPageModule { }

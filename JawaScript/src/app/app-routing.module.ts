@@ -14,35 +14,37 @@ const routes: Routes = [
   },
   {
     path: 'login',
-    loadChildren: () => import('./login/login.module').then( m => m.LoginPageModule)
+    loadChildren: () => import('./login/login.module').then(m => m.LoginPageModule)
   },
   {
     path: 'register',
-    loadChildren: () => import('./register/register.module').then( m => m.RegisterPageModule)
+    loadChildren: () => import('./register/register.module').then(m => m.RegisterPageModule)
   },
   {
     path: 'rankinga/:id',
     loadChildren: './ranking/ranking/ranking.module#RankingPageModule',
     canActivate: [AuthGuard]
   },
-  { path:'ranking', 
+  {
+    path: 'ranking',
     loadChildren: './ranking/ranking.module#RankingPageModule',
     canActivate: [AuthGuard]
   },
-  { path:'rankingD', 
+  {
+    path: 'rankingD',
     loadChildren: './ranking/ranking/ranking.module#RankingPageModule',
     canActivate: [AuthGuard]
-  },   
+  },
   {
     path: 'add',
-    loadChildren: () => import('./add/add.module').then( m => m.AddPageModule)
+    loadChildren: () => import('./add/add.module').then(m => m.AddPageModule)
   },
   {
     path: 'tabs',
-    loadChildren: () => import('./tabs/tabs.module').then( m => m.TabsPageModule),
+    loadChildren: () => import('./tabs/tabs.module').then(m => m.TabsPageModule),
     canActivate: [AuthGuard]
   }
- 
+
 
 ];
 @NgModule({
@@ -51,4 +53,4 @@ const routes: Routes = [
   ],
   exports: [RouterModule]
 })
-export class AppRoutingModule {}
+export class AppRoutingModule { }

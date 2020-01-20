@@ -17,4 +17,4 @@ import { RankingPage } from './ranking.page';
   ],
   declarations: [RankingPage]
 })
-export class RankingPageModule {}
+export class RankingPageModule { }

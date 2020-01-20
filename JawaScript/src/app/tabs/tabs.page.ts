@@ -7,17 +7,17 @@ import { Router } from '@angular/router';
   templateUrl: 'tabs.page.html',
   styleUrls: ['tabs.page.scss']
 })
-export class TabsPage implements OnInit{
+export class TabsPage implements OnInit {
 
-  constructor(private router: Router) {}
+  constructor(private router: Router) { }
 
   login = true;
-  ngOnInit(){
+  ngOnInit() {
     const ruta = this.router.url;
-    if(ruta == "/tabs/login"){
+    if (ruta == "/tabs/login") {
       this.login = false;
     }
-    else{
+    else {
       this.login = true;
     }
   }

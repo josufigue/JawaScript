@@ -24,7 +24,7 @@ export class Tab3Page {
   constructor(private rankingService: ErabiltzaileakService, private loadingController: LoadingController, private authSvc: AuthService, private router: Router, private afAuth: AngularFireAuth) {
   }
 
-  ngOnInit(){
+  ngOnInit() {
     this.rankingService.getAllErabiltzaile().subscribe(res => {
       this.erabiltzaile = res;
     });
@@ -35,30 +35,30 @@ export class Tab3Page {
         message: 'Loading...'
       });
       await loading.present();
-    console.log(this.erabiltzaile);
-    this.comprobar();
-    await loading.dismiss();
-      
+      console.log(this.erabiltzaile);
+      this.comprobar();
+      await loading.dismiss();
+
     })();
   }
 
-  comprobar(){
-    for(var x=0; x< this.erabiltzaile.length; x++){
-      if(this.erabiltzaile[x].erabiltzaileId == firebase.auth().currentUser.uid){
-        this.gmail=this.erabiltzaile[x].Id;
-        this.Izena=this.erabiltzaile[x].Izena;
-        this.puntuazioa=this.erabiltzaile[x].Puntuazioa;
+  comprobar() {
+    for (var x = 0; x < this.erabiltzaile.length; x++) {
+      if (this.erabiltzaile[x].erabiltzaileId == firebase.auth().currentUser.uid) {
+        this.gmail = this.erabiltzaile[x].Id;
+        this.Izena = this.erabiltzaile[x].Izena;
+        this.puntuazioa = this.erabiltzaile[x].Puntuazioa;
         console.log(this.gmail);
         break;
       }
 
     }
   }
-  
-  
-  
 
-  onLogout(){
+
+
+
+  onLogout() {
     console.log('Logout!');
     this.afAuth.auth.signOut();
     this.router.navigateByUrl('/login');

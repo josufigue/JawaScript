@@ -16,32 +16,32 @@ export class TodorankingService {
     this.rankingCollection = db.collection<rankingTask>('ranking');
     this.ranking = this.rankingCollection.snapshotChanges().pipe(map(
       actions => {
-        return actions.map( a => {
+        return actions.map(a => {
           const data = a.payload.doc.data();
           const id = a.payload.doc.id;
-          return{id, ...data};
+          return { id, ...data };
         });
       }
     ));
-   }
-
-    getAllRanking(){
-      return this.ranking;
-    }
-    
-    getRanking(id: string){
-      return this.rankingCollection.doc<rankingTask>(id).valueChanges();
-    }
-
-    updateRanking(ranking:rankingTask, id: string){
-      return this.rankingCollection.doc(id).update(ranking)
-    }
-
-    addRanking(ranking: rankingTask){
-      return this.rankingCollection.add(ranking);
-    }
-    
-    remove(id: string){
-      return this.rankingCollection.doc(id).delete();
-    }
   }
+
+  getAllRanking() {
+    return this.ranking;
+  }
+
+  getRanking(id: string) {
+    return this.rankingCollection.doc<rankingTask>(id).valueChanges();
+  }
+
+  updateRanking(ranking: rankingTask, id: string) {
+    return this.rankingCollection.doc(id).update(ranking)
+  }
+
+  addRanking(ranking: rankingTask) {
+    return this.rankingCollection.add(ranking);
+  }
+
+  remove(id: string) {
+    return this.rankingCollection.doc(id).delete();
+  }
+}

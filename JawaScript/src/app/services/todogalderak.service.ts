@@ -14,33 +14,33 @@ export class TodogalderakService {
 
   constructor(db: AngularFirestore) {
     this.galderakCollection = db.collection<gald>('galderak');
-    this.galderak= this.galderakCollection.snapshotChanges().pipe(map(
+    this.galderak = this.galderakCollection.snapshotChanges().pipe(map(
       actions => {
-        return actions.map( a => {
+        return actions.map(a => {
           const data = a.payload.doc.data();
           const id = a.payload.doc.id;
-          return{id, ...data};
+          return { id, ...data };
         });
       }
     ));
-   }
-
-    getAllGalderak(){
-      return this.galderak;
-    }
-    getGalderak(Galdera: string){
-      return this.galderakCollection.doc<gald>(Galdera).valueChanges();
-    }
-
-    updateGalderak(galderak:gald, id: string){
-      return this.galderakCollection.doc(id).update(galderak)
-    }
-
-    addGalderak(galderak: gald){
-      return this.galderakCollection.add(galderak);
-    }
-    
-    remove(id: string){
-      return this.galderakCollection.doc(id).delete();
-    }
   }
+
+  getAllGalderak() {
+    return this.galderak;
+  }
+  getGalderak(Galdera: string) {
+    return this.galderakCollection.doc<gald>(Galdera).valueChanges();
+  }
+
+  updateGalderak(galderak: gald, id: string) {
+    return this.galderakCollection.doc(id).update(galderak)
+  }
+
+  addGalderak(galderak: gald) {
+    return this.galderakCollection.add(galderak);
+  }
+
+  remove(id: string) {
+    return this.galderakCollection.doc(id).delete();
+  }
+}

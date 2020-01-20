@@ -21,11 +21,12 @@ export class GalderaPage implements OnInit {
   constructor(private galderakService: TodogalderakService, private loadingController: LoadingController, private router: Router) { }
 
   ngOnInit() {
-    this.galderakService.getAllGalderak().subscribe(res => {this.galderak = res;
+    this.galderakService.getAllGalderak().subscribe(res => {
+    this.galderak = res;
       this.primerRandom = (Math.floor(Math.random() * this.galderak.length) + 1);
-    console.log(this.galderak);
-    this.randomOrderAnswer(this.primerRandom);
-  }
+      console.log(this.galderak);
+      this.randomOrderAnswer(this.primerRandom);
+    }
     );
     /*(async () => {
       this.loading = await this.loadingController.create({
@@ -38,7 +39,7 @@ export class GalderaPage implements OnInit {
 
     })();*/
   }
-  mensaje(){
+  mensaje() {
     console.log("Estoy despues del subscribe");
   }
 
@@ -84,7 +85,7 @@ export class GalderaPage implements OnInit {
   clickAnswer() {
     (async () => {
       //await this.loading.present();
-      
+
 
       this.i = this.ids.length - 1;
       for (this.i; this.i < 9; this.i++) {
@@ -97,7 +98,7 @@ export class GalderaPage implements OnInit {
           break;
         }
       }
-      if(this.ids.length==10){
+      if (this.ids.length == 10) {
         this.router.navigateByUrl('/tabs/tab1');
       }
     })();

@@ -19,41 +19,41 @@ export class RankingPage implements OnInit {
   };
   rankId = null;
 
-  constructor(private route: ActivatedRoute, private nav:NavController, private TodorankingService: TodorankingService, private loadingController: LoadingController) {
-   }
+  constructor(private route: ActivatedRoute, private nav: NavController, private TodorankingService: TodorankingService, private loadingController: LoadingController) {
+  }
 
   ngOnInit() {
     this.rankId = this.route.snapshot.params['id'];
-    if(this.rankId){
+    if (this.rankId) {
       this.loadAll();
     }
   }
 
-  async loadAll(){
-    const loading =await this.loadingController.create({
+  async loadAll() {
+    const loading = await this.loadingController.create({
       message: 'Loading'
     });
     await loading.present();
-    this.TodorankingService.getRanking(this.rankId).subscribe(res =>{
+    this.TodorankingService.getRanking(this.rankId).subscribe(res => {
       loading.dismiss();
       this.rankingitem = res;
     })
   }
-  async saveAll(){
+  async saveAll() {
     const loading = await this.loadingController.create({
       message: 'Saving...'
     });
     await loading.present();
 
-    if(this.rankId){
+    if (this.rankId) {
       //update
-      this.TodorankingService.updateRanking(this.rankingitem, this.rankId).then(()=>{
+      this.TodorankingService.updateRanking(this.rankingitem, this.rankId).then(() => {
         loading.dismiss();
         this.nav.navigateForward('/');
       })
     }
-    else{
-      this.TodorankingService.addRanking(this.rankingitem).then(()=>{
+    else {
+      this.TodorankingService.addRanking(this.rankingitem).then(() => {
         loading.dismiss();
         this.nav.navigateForward('/');
       })

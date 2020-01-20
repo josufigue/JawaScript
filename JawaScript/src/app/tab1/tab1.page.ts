@@ -14,7 +14,7 @@ export class Tab1Page {
   constructor() {
     this.username = firebase.auth().currentUser.email;
     this.username = this.username.split('@')[0];
-    if(this.username == "proba"){
+    if (this.username == "proba") {
       this.isProba = false;
     }
   }

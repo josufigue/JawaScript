@@ -13,14 +13,14 @@ import { AppComponent } from './app.component';
 import { AngularFireModule } from '@angular/fire';
 import { environment } from '../environments/environment';
 import { AngularFirestoreModule } from 'angularfire2/firestore';
-import { AngularFireAuthModule} from '@angular/fire/auth';
+import { AngularFireAuthModule } from '@angular/fire/auth';
 
 @NgModule({
   declarations: [AppComponent],
   entryComponents: [],
-  imports: [BrowserModule, IonicModule.forRoot(), AppRoutingModule,FormsModule, ReactiveFormsModule, 
-            AngularFireModule.initializeApp(environment.firebaseConfig), AngularFirestoreModule,
-             AngularFireAuthModule],
+  imports: [BrowserModule, IonicModule.forRoot(), AppRoutingModule, FormsModule, ReactiveFormsModule,
+    AngularFireModule.initializeApp(environment.firebaseConfig), AngularFirestoreModule,
+    AngularFireAuthModule],
   providers: [
     StatusBar,
     SplashScreen,
@@ -28,4 +28,4 @@ import { AngularFireAuthModule} from '@angular/fire/auth';
   ],
   bootstrap: [AppComponent]
 })
-export class AppModule {}
+export class AppModule { }

@@ -1,7 +1,7 @@
 <ion-content>
   <ion-grid>
     <ion-row class="ion-justify-content-center">
-      <ion-col class="ion-align-self-center"   size-md="6" size-lg="5" size-xs="12">
+      <ion-col class="ion-align-self-center" size-md="6" size-lg="5" size-xs="12">
         <div class="ion-text-center">
           <img src="../../assets/icon/LogoGame.png">
           <h1>Logeatu zaitez</h1>
@@ -14,12 +14,14 @@
             <ion-input type="password" [(ngModel)]="user.password" placeholder="Pasahitza"></ion-input>
           </ion-item>
         </div>
-  
+
         <div class="ion-padding">
           <ion-button size="large" (click)="onLogin()" expand="block">Login</ion-button>
         </div>
         <div class="ion-text-right">
-         <a routerLink="/register"><p>Erabiltzailea sortu</p></a>
+          <a routerLink="/register">
+            <p>Erabiltzailea sortu</p>
+          </a>
         </div>
 
       </ion-col>

@@ -10,7 +10,7 @@ const routes: Routes = [
   },
   {
     path: 'ranking',
-    loadChildren: () => import('./ranking/ranking.module').then( m => m.RankingPageModule)
+    loadChildren: () => import('./ranking/ranking.module').then(m => m.RankingPageModule)
   }
 ];
 
@@ -18,4 +18,4 @@ const routes: Routes = [
   imports: [RouterModule.forChild(routes)],
   exports: [RouterModule],
 })
-export class RankingPageRoutingModule {}
+export class RankingPageRoutingModule { }

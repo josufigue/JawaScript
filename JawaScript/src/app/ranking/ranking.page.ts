@@ -13,13 +13,13 @@ export class RankingPage implements OnInit {
   constructor(private rankingService: TodorankingService) { }
 
   ngOnInit() {
-    this.rankingService.getAllRanking().subscribe( res =>{
+    this.rankingService.getAllRanking().subscribe(res => {
       this.ranking = res;
     });
-    console.log('aaa',this.ranking);
+    console.log('aaa', this.ranking);
   }
 
-  botonPlus(){
+  botonPlus() {
     window.location.reload();
   }
 

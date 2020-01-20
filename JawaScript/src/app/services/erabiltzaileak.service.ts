@@ -16,32 +16,32 @@ export class ErabiltzaileakService {
     this.erabiltzaileCollection = db.collection<rankingTask>('ranking');
     this.erabiltzaile = this.erabiltzaileCollection.snapshotChanges().pipe(map(
       actions => {
-        return actions.map( a => {
+        return actions.map(a => {
           const data = a.payload.doc.data();
           const id = a.payload.doc.id;
-          return{id, ...data};
+          return { id, ...data };
         });
       }
     ));
-   }
-
-    getAllErabiltzaile(){
-      return this.erabiltzaile;
-    }
-
-    getErabiltzaile(id: string){
-      return this.erabiltzaileCollection.doc<rankingTask>(id).valueChanges();
-    }
-
-    updateRanking(ranking:rankingTask, id: string){
-      return this.erabiltzaileCollection.doc(id).update(ranking)
-    }
-
-    addErabiltzaile(ranking: rankingTask){
-      return this.erabiltzaileCollection.add(ranking);
-    }
-    
-    remove(id: string){
-      return this.erabiltzaileCollection.doc(id).delete();
-    }
   }
+
+  getAllErabiltzaile() {
+    return this.erabiltzaile;
+  }
+
+  getErabiltzaile(id: string) {
+    return this.erabiltzaileCollection.doc<rankingTask>(id).valueChanges();
+  }
+
+  updateRanking(ranking: rankingTask, id: string) {
+    return this.erabiltzaileCollection.doc(id).update(ranking)
+  }
+
+  addErabiltzaile(ranking: rankingTask) {
+    return this.erabiltzaileCollection.add(ranking);
+  }
+
+  remove(id: string) {
+    return this.erabiltzaileCollection.doc(id).delete();
+  }
+}

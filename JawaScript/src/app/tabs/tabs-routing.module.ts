@@ -15,7 +15,7 @@ const routes: Routes = [
             path: '',
             loadChildren: () =>
               import('../tab1/tab1.module').then(m => m.Tab1PageModule),
-              canActivate: [AuthGuard]
+            canActivate: [AuthGuard]
           }
         ]
       },
@@ -26,7 +26,7 @@ const routes: Routes = [
             path: '',
             loadChildren: () =>
               import('../tab2/tab2.module').then(m => m.Tab2PageModule),
-              //canActivate: [AuthGuard]
+            //canActivate: [AuthGuard]
           }
         ]
       },
@@ -37,7 +37,7 @@ const routes: Routes = [
             path: '',
             loadChildren: () =>
               import('../tab3/tab3.module').then(m => m.Tab3PageModule),
-              //canActivate: [AuthGuard]
+            //canActivate: [AuthGuard]
           }
         ]
       },
@@ -48,7 +48,7 @@ const routes: Routes = [
             path: '',
             loadChildren: () =>
               import('../ranking/ranking.module').then(m => m.RankingPageModule),
-              canActivate: [AuthGuard]
+            canActivate: [AuthGuard]
           }
         ]
       },
@@ -80,4 +80,4 @@ const routes: Routes = [
   imports: [RouterModule.forChild(routes)],
   exports: [RouterModule]
 })
-export class TabsPageRoutingModule {}
+export class TabsPageRoutingModule { }

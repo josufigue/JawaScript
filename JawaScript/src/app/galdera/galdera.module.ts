@@ -17,4 +17,4 @@ import { GalderaPage } from './galdera.page';
   ],
   declarations: [GalderaPage]
 })
-export class GalderaPageModule {}
+export class GalderaPageModule { }

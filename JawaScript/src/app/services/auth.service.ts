@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { AngularFireAuth} from '@angular/fire/auth';
+import { AngularFireAuth } from '@angular/fire/auth';
 import { User } from '../shared/user.class';
 
 import { Toast } from '@ionic-native/toast/ngx';
@@ -12,39 +12,39 @@ export class AuthService {
   public isLogged: any = false;
 
   constructor(public afAuth: AngularFireAuth, private toastController: ToastController) {
-    afAuth.authState.subscribe( user => (this.isLogged = user));
-   }
+    afAuth.authState.subscribe(user => (this.isLogged = user));
+  }
 
-   // login
-   async  onLogin (user:User){
-     try{
-       return await this.afAuth.auth.signInWithEmailAndPassword(user.email, user.password);
-     }
-     catch (error){
-        console.log("Error on login", error);
+  // login
+  async  onLogin(user: User) {
+    try {
+      return await this.afAuth.auth.signInWithEmailAndPassword(user.email, user.password);
+    }
+    catch (error) {
+      console.log("Error on login", error);
 
-        this.showToast(error);
-     }
-   }
+      this.showToast(error);
+    }
+  }
 
 
-   // register
-   async onRegister(user:User){
-    try{
+  // register
+  async onRegister(user: User) {
+    try {
       return await this.afAuth.auth.createUserWithEmailAndPassword(user.email, user.password)
     }
-    catch(error){
+    catch (error) {
       console.log("Error on register", error);
 
       this.showToast(error);
     }
-   }
+  }
 
-   async showToast(error) {
+  async showToast(error) {
 
     var errorea = "";
     console.log(error.message);
-    switch(error.message){
+    switch (error.message) {
       case 'signInWithEmailAndPassword failed: First argument "email" must be a valid string.':
         errorea = 'Sartutako emaila ezin da hutsik egon';
         break;
@@ -73,7 +73,7 @@ export class AuthService {
         errorea = 'Sartutako emaila jadanik erabitzen da'
     }
     const toast = await this.toastController.create({
-      message:  errorea,
+      message: errorea,
       duration: 1000,
       position: "middle",
     });

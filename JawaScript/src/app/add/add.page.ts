@@ -13,34 +13,34 @@ import { NavController, LoadingController } from '@ionic/angular';
 export class AddPage implements OnInit {
 
   galderaitem: gald = {
-    Erantzun1:'',
-    Erantzun2:'',
-    ErantzunZuzena:'',
-    Galdera:''
+    Erantzun1: '',
+    Erantzun2: '',
+    ErantzunZuzena: '',
+    Galdera: ''
   }
 
-  constructor(private route: ActivatedRoute, private nav:NavController, private TodogalderakService: TodogalderakService, private loadingController: LoadingController) { }
+  constructor(private route: ActivatedRoute, private nav: NavController, private TodogalderakService: TodogalderakService, private loadingController: LoadingController) { }
 
   ngOnInit() {
   }
-  async saveAll(){
+  async saveAll() {
 
     const loading = await this.loadingController.create({
       message: 'Saving...'
     });
     await loading.present();
-      this.galderaitem.Galdera=((document.getElementById("galdera") as HTMLInputElement).value);
-      this.galderaitem.ErantzunZuzena=((document.getElementById("erantzunZ") as HTMLInputElement).value);
-      this.galderaitem.Erantzun1=((document.getElementById("erantzun1") as HTMLInputElement).value);
-      this.galderaitem.Erantzun2=((document.getElementById("erantzun2") as HTMLInputElement).value);
+    this.galderaitem.Galdera = ((document.getElementById("galdera") as HTMLInputElement).value);
+    this.galderaitem.ErantzunZuzena = ((document.getElementById("erantzunZ") as HTMLInputElement).value);
+    this.galderaitem.Erantzun1 = ((document.getElementById("erantzun1") as HTMLInputElement).value);
+    this.galderaitem.Erantzun2 = ((document.getElementById("erantzun2") as HTMLInputElement).value);
 
-      this.TodogalderakService.addGalderak(this.galderaitem).then(()=>{
-        loading.dismiss();
-        this.nav.navigateForward('/add');
-        this.galderaitem.Galdera=((document.getElementById("galdera") as HTMLInputElement).value) =  '';
-        this.galderaitem.ErantzunZuzena=((document.getElementById("erantzunZ") as HTMLInputElement).value) = '';
-        this.galderaitem.Erantzun1=((document.getElementById("erantzun1") as HTMLInputElement).value) = '';
-        this.galderaitem.Erantzun2=((document.getElementById("erantzun2") as HTMLInputElement).value) = '';
-      })
+    this.TodogalderakService.addGalderak(this.galderaitem).then(() => {
+      loading.dismiss();
+      this.nav.navigateForward('/add');
+      this.galderaitem.Galdera = ((document.getElementById("galdera") as HTMLInputElement).value) = '';
+      this.galderaitem.ErantzunZuzena = ((document.getElementById("erantzunZ") as HTMLInputElement).value) = '';
+      this.galderaitem.Erantzun1 = ((document.getElementById("erantzun1") as HTMLInputElement).value) = '';
+      this.galderaitem.Erantzun2 = ((document.getElementById("erantzun2") as HTMLInputElement).value) = '';
+    })
   }
 }
