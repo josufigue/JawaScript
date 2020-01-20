@@ -1,22 +1,16 @@
 .card {
-    margin: 0 auto;
-
+    margin: auto;
+    margin-top: 30%;
     .header {
         height: 75%;
-
         .avatar {
             width: 180px;
             height: 180px;
-            position: relative;
-            margin: 0 auto;
-            
-
             img {
+                margin-left: 3%;
                 margin-top: 5%;
                 display: block;
                 border-radius: 50%;
-            
-                bottom: calc(-1*(80px + 4px));
                 border: 8px solid #585858da;
                 background-color: #f7f3f3;
             }
@@ -62,9 +56,9 @@
     background-color: rgb(209, 209, 209);
     
     }
-    #klk{
-        position: absolute;
-        margin-top: 10%;
-        margin-left: 30%;
-        margin-right: 30%;
-    }
+
+.izena{
+    border-bottom: 1px solid #10dc60;
+    max-width: fit-content;
+    margin: auto;
+}
