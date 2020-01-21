@@ -37,8 +37,8 @@ export class TodorankingService {
     return this.rankingCollection.doc(id).update(ranking)
   }
 
-  addRanking(ranking: rankingTask) {
-    return this.rankingCollection.add(ranking);
+  addRanking(ranking: rankingTask, id: string) {
+    return this.rankingCollection.doc(id).set(ranking);
   }
 
   remove(id: string) {

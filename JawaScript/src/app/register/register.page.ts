@@ -50,7 +50,7 @@ export class RegisterPage implements OnInit {
     this.rankingitem.erabiltzaileId = firebase.auth().currentUser.uid;
     this.rankingitem.Izena = firebase.auth().currentUser.email.split('@')[0];
     this.rankingitem.Puntuazioa = 0;
-    this.TodorankingService.addRanking(this.rankingitem);
+    this.TodorankingService.addRanking(this.rankingitem, this.rankingitem.Id);
     console.log(this.rankingitem);
   }
 

@@ -8,6 +8,7 @@ import { ErabiltzaileakService } from '../services/erabiltzaileak.service';
 import { delay } from 'rxjs/operators';
 import { LoadingController } from '@ionic/angular';
 import { Subscription } from 'rxjs';
+import { AlertController } from '@ionic/angular';
 
 @Component({
   selector: 'app-tab3',
@@ -17,14 +18,21 @@ import { Subscription } from 'rxjs';
 export class Tab3Page {
 
   private erabiltzaile: rankingTask[];
-  username;
-  Izena;
+  user;
+  Izena:string;
   puntuazioa;
   gmail;
 
+  rankingitem: rankingTask = {
+    Id: '',
+    Izena: '',
+    Puntuazioa: 0,
+    erabiltzaileId: ''
+  };
+
   subscription: Subscription = new Subscription();
 
-  constructor(private rankingService: ErabiltzaileakService, private loadingController: LoadingController, private authSvc: AuthService, private router: Router, private afAuth: AngularFireAuth) {
+  constructor(private alertController: AlertController, private rankingService: ErabiltzaileakService, private loadingController: LoadingController, private authSvc: AuthService, private router: Router, private afAuth: AngularFireAuth) {
   }
 
   ngOnInit() {
@@ -53,6 +61,7 @@ export class Tab3Page {
         this.gmail = this.erabiltzaile[x].Id;
         this.Izena = this.erabiltzaile[x].Izena;
         this.puntuazioa = this.erabiltzaile[x].Puntuazioa;
+        this.user = this.erabiltzaile[x].erabiltzaileId;
         console.log(this.gmail);
         break;
       }
@@ -60,6 +69,56 @@ export class Tab3Page {
     }
   }
 
+  async update() {
+    const alert = await this.alertController.create({
+      header: 'Prompt!',
+      inputs: [
+        {
+          name: 'name1',
+          value: 'hello',
+          type: 'text',
+          placeholder: this.Izena,
+          
+          id : 'izena'
+        },
+      ],
+      buttons: [
+        {
+          text: 'Cancel',
+          role: 'cancel',
+          cssClass: 'secondary',
+          handler: () => {
+            console.log('Confirm Cancel');
+            this.rankingitem.Izena =  document.getElementById("izena").innerHTML;
+            console.log(this.rankingitem.Izena)
+          }
+        }, {
+          text: 'Ok',
+          handler: async data => {
+            if ((document.getElementById("izena") as HTMLInputElement).value != "" || (document.getElementById("izena") as HTMLInputElement).value!= this.Izena) {
+              const loading = await this.loadingController.create({
+                message: 'Saving...'
+              });
+              await loading.present();
+              this.rankingitem.Izena =  document.getElementById("izena").innerHTML;
+              this.rankingitem.Id = this.gmail;
+              this.rankingitem.Puntuazioa = this.puntuazioa;
+              this.rankingitem.erabiltzaileId = this.user;
+              this.rankingService.updateRanking(this.rankingitem, this.gmail)
+              
+              await loading.dismiss();
+            } else {
+              // invalid login 
+              return false;
+            }
+        }
+      }
+      ]
+    });
+  
+    await alert.present();
+    console.log((document.getElementById("izena") as HTMLInputElement).value)
+  }
 
 
 
