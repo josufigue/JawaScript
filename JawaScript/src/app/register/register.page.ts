@@ -1,4 +1,4 @@
-import { Component, OnInit, NgModule } from '@angular/core';
+import { Component, OnInit, NgModule, AfterContentInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { AuthService } from '../services/auth.service';
 import { User } from '../shared/user.class';
@@ -11,7 +11,7 @@ import { ToastController } from '@ionic/angular';
   templateUrl: './register.page.html',
   styleUrls: ['./register.page.scss'],
 })
-export class RegisterPage implements OnInit {
+export class RegisterPage implements AfterContentInit {
   user: User = new User();
 
   rankingitem: rankingTask = {
@@ -23,7 +23,13 @@ export class RegisterPage implements OnInit {
 
   constructor(private authSvc: AuthService, private router: Router, private TodorankingService: TodorankingService, private toastController: ToastController) { }
 
-  ngOnInit() {
+  ngAfterContentInit() {
+    try{
+      document.getElementsByTagName("ion-tab-bar")[0].hidden = true;
+    }
+    catch(error){
+      console.log("error: "+error);
+    }
   }
 
   async onRegister() {

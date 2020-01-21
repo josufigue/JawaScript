@@ -12,6 +12,7 @@ export class Tab1Page {
   isProba = true;
 
   constructor() {
+    document.getElementsByTagName("ion-tab-bar")[0].hidden = false;
     this.username = firebase.auth().currentUser.email;
     this.username = this.username.split('@')[0];
     console.log(this.username);
