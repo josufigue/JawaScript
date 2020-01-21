@@ -12,6 +12,7 @@ export class TabsPage implements OnInit {
   constructor(private router: Router) { }
 
   login = true;
+  
   ngOnInit() {
     const ruta = this.router.url;
     if (ruta == "/tabs/login") {

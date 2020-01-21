@@ -30,19 +30,21 @@ export class Tab3Page {
   ngOnInit() {
     this.subscription = this.rankingService.getAllErabiltzaile().subscribe(res => {
       this.erabiltzaile = res;
+
+      (async () => {
+        const loading = await this.loadingController.create({
+          message: 'Loading...'
+        });
+        await loading.present();
+        console.log(this.erabiltzaile);
+        this.comprobar();
+        await loading.dismiss();
+  
+      })();
     });
     // var lista = this.erabiltzaile.length;
 
-    (async () => {
-      const loading = await this.loadingController.create({
-        message: 'Loading...'
-      });
-      await loading.present();
-      console.log(this.erabiltzaile);
-      this.comprobar();
-      await loading.dismiss();
-
-    })();
+    
   }
 
   comprobar() {
