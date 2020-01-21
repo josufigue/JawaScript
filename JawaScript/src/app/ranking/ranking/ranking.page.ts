@@ -10,7 +10,7 @@ import { NavController, LoadingController } from '@ionic/angular';
   templateUrl: './ranking.page.html',
   styleUrls: ['./ranking.page.scss'],
 })
-export class RankingPage implements OnInit {
+export class RankingPage {
   rankingitem: rankingTask = {
     Id: '',
     Izena: '',
@@ -22,7 +22,7 @@ export class RankingPage implements OnInit {
   constructor(private route: ActivatedRoute, private nav: NavController, private TodorankingService: TodorankingService, private loadingController: LoadingController) {
   }
 
-  ngOnInit() {
+  ionViewWillEnter() {
     this.rankId = this.route.snapshot.params['id'];
     if (this.rankId) {
       this.loadAll();

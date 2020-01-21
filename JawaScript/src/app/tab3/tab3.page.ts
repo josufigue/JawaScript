@@ -27,25 +27,34 @@ export class Tab3Page {
   constructor(private rankingService: ErabiltzaileakService, private loadingController: LoadingController, private authSvc: AuthService, private router: Router, private afAuth: AngularFireAuth) {
   }
 
-  ngOnInit() {
+  ionViewWillEnter() {
     this.subscription = this.rankingService.getAllErabiltzaile().subscribe(res => {
       this.erabiltzaile = res;
 
-      (async () => {
+      /*(async () => {
         const loading = await this.loadingController.create({
           message: 'Loading...'
         });
-        await loading.present();
+        await loading.present();*/
         console.log(this.erabiltzaile);
         this.comprobar();
-        await loading.dismiss();
+        console.log(this.Izena);
+        //await loading.dismiss();
   
-      })();
+      //})();
     });
     // var lista = this.erabiltzaile.length;
 
     
   }
+  /*ionViewWillEnter(){
+    this.subscription = this.rankingService.getAllErabiltzaile().subscribe(res => {
+      this.erabiltzaile = res;
+        console.log(this.erabiltzaile);
+        this.comprobar();
+        console.log(this.Izena);
+    });
+  }*/
 
   comprobar() {
     for (var x = 0; x < this.erabiltzaile.length; x++) {
@@ -56,6 +65,11 @@ export class Tab3Page {
         console.log(this.gmail);
         break;
       }
+      else{
+        this.gmail = '';
+        this.Izena = '';
+        this.puntuazioa = '';
+      }
 
     }
   }
@@ -65,11 +79,10 @@ export class Tab3Page {
 
   onLogout() {
     console.log('Logout!');
-    this.gmail = '';
-    this.Izena = '';
-    this.puntuazioa = '';
     this.subscription.unsubscribe();
     this.afAuth.auth.signOut();
+    
     this.router.navigateByUrl('/login');
+    //location.reload();
   }
 }
