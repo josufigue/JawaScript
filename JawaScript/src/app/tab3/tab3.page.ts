@@ -7,6 +7,7 @@ import { rankingTask } from '../models/task.interface';
 import { ErabiltzaileakService } from '../services/erabiltzaileak.service';
 import { delay } from 'rxjs/operators';
 import { LoadingController } from '@ionic/angular';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-tab3',
@@ -21,11 +22,13 @@ export class Tab3Page {
   puntuazioa;
   gmail;
 
+  subscription: Subscription = new Subscription();
+
   constructor(private rankingService: ErabiltzaileakService, private loadingController: LoadingController, private authSvc: AuthService, private router: Router, private afAuth: AngularFireAuth) {
   }
 
   ngOnInit() {
-    this.rankingService.getAllErabiltzaile().subscribe(res => {
+    this.subscription = this.rankingService.getAllErabiltzaile().subscribe(res => {
       this.erabiltzaile = res;
     });
     // var lista = this.erabiltzaile.length;
@@ -60,6 +63,7 @@ export class Tab3Page {
 
   onLogout() {
     console.log('Logout!');
+    this.subscription.unsubscribe();
     this.afAuth.auth.signOut();
     this.router.navigateByUrl('/login');
   }
