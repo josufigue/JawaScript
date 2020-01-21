@@ -65,6 +65,9 @@ export class Tab3Page {
 
   onLogout() {
     console.log('Logout!');
+    this.gmail = '';
+    this.Izena = '';
+    this.puntuazioa = '';
     this.subscription.unsubscribe();
     this.afAuth.auth.signOut();
     this.router.navigateByUrl('/login');
