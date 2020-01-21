@@ -82,7 +82,7 @@ export class Tab3Page {
     this.subscription.unsubscribe();
     this.afAuth.auth.signOut();
     
-    this.router.navigateByUrl('/login');
-    //location.reload();
+    //this.router.navigateByUrl('/login');
+    location.reload();
   }
 }
