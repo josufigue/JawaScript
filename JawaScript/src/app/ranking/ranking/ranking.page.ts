@@ -53,7 +53,7 @@ export class RankingPage {
       })
     }
     else {
-      this.TodorankingService.addRanking(this.rankingitem).then(() => {
+      this.TodorankingService.addRanking(this.rankingitem, this.rankId).then(() => {
         loading.dismiss();
         this.nav.navigateForward('/');
       })
