@@ -23,6 +23,8 @@ export class LoginPage implements AfterContentInit {
 
   async onLogin() {
     const user = await this.authSvc.onLogin(this.user);
+    var audio = new Audio('../../assets/music/mii-channel-music-plaza-hq.ogg');
+    audio.play();
 
     if (user) {
       console.log('Succesfully logged in!');
