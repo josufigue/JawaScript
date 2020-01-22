@@ -19,7 +19,7 @@ export class Tab3Page {
 
   private erabiltzaile: rankingTask[];
   user;
-  Izena:string;
+  Izena: string;
   puntuazioa;
   gmail;
 
@@ -36,102 +36,50 @@ export class Tab3Page {
   }
 
   ionViewWillEnter() {
-    this.subscription = this.rankingService.getAllErabiltzaile().subscribe(res => {
-      this.erabiltzaile = res;
-
-      /*(async () => {
-        const loading = await this.loadingController.create({
-          message: 'Loading...'
-        });
-        await loading.present();*/
-        console.log(this.erabiltzaile);
-        this.comprobar();
-        console.log(this.Izena);
-        //await loading.dismiss();
-  
-      //})();
+    this.subscription = this.rankingService.getErabiltzaile(firebase.auth().currentUser.email).subscribe(res => {
+      this.rankingitem = res;
     });
-    // var lista = this.erabiltzaile.length;
-
-    
-  }
-  /*ionViewWillEnter(){
-    this.subscription = this.rankingService.getAllErabiltzaile().subscribe(res => {
-      this.erabiltzaile = res;
-        console.log(this.erabiltzaile);
-        this.comprobar();
-        console.log(this.Izena);
-    });
-  }*/
-
-  comprobar() {
-    for (var x = 0; x < this.erabiltzaile.length; x++) {
-      if (this.erabiltzaile[x].erabiltzaileId == firebase.auth().currentUser.uid) {
-        this.gmail = this.erabiltzaile[x].Id;
-        this.Izena = this.erabiltzaile[x].Izena;
-        this.puntuazioa = this.erabiltzaile[x].Puntuazioa;
-        this.user = this.erabiltzaile[x].erabiltzaileId;
-        console.log(this.gmail);
-        break;
-      }
-      else{
-        this.gmail = '';
-        this.Izena = '';
-        this.puntuazioa = '';
-      }
-
-    }
   }
 
   async update() {
     const alert = await this.alertController.create({
-      header: 'Prompt!',
+      header: 'Izena aldatu',
       inputs: [
         {
           name: 'name1',
-          value: 'hello',
+          value: '',
           type: 'text',
-          placeholder: this.Izena,
-          
-          id : 'izena'
+          placeholder:  this.rankingitem.Izena,
+          id: 'izena'
         },
       ],
       buttons: [
         {
-          text: 'Cancel',
+          text: 'Ezeztatu',
           role: 'cancel',
-          cssClass: 'secondary',
-          handler: () => {
-            console.log('Confirm Cancel');
-            this.rankingitem.Izena =  document.getElementById("izena").innerHTML;
-            console.log(this.rankingitem.Izena)
-          }
-        }, {
-          text: 'Ok',
-          // handler: alertData => { //takes the data 
-          //   console.log(alertData.name1);
+          cssClass: 'secondary'
+        },
+        {
+          text: 'Gorde',
           handler: async data => {
-            if ((document.getElementById("izena") as HTMLInputElement).value != "" || (document.getElementById("izena") as HTMLInputElement).value!= this.Izena) {
+            if (data.name1 != "" || data.name1 != this.Izena) {
               const loading = await this.loadingController.create({
-                message: 'Saving...'
+                message: 'Gordetzen...'
               });
               await loading.present();
-              this.rankingitem.Izena =  data.name1;
-              this.rankingitem.Id = this.gmail;
-              this.rankingitem.Puntuazioa = this.puntuazioa;
-              this.rankingitem.erabiltzaileId = this.user;
-              this.rankingService.updateRanking(this.rankingitem, this.gmail)
-              
+              this.rankingitem.Izena = data.name1;
+              this.rankingService.updateRanking(this.rankingitem, this.rankingitem.Id)
+
               await loading.dismiss();
-            } else {
-              // invalid login 
+            }
+            else {
               return false;
             }
+          }
         }
-      }
       ]
     });
-  
+
     await alert.present();
     console.log((document.getElementById("izena") as HTMLInputElement).value)
   }
@@ -142,8 +90,6 @@ export class Tab3Page {
     console.log('Logout!');
     this.subscription.unsubscribe();
     this.afAuth.auth.signOut();
-    
-    //this.router.navigateByUrl('/login');
     location.reload();
   }
 }

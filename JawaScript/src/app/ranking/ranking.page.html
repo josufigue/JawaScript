@@ -11,10 +11,10 @@
 <div class="portada">
   <ion-content>
     <ion-list>
-      <ion-item-sliding *ngFor="let rankingitem of ranking">
+      <ion-item-sliding *ngFor="let rankingitem of ranking;let i=index">
         <ion-item *ngIf="rankingitem.Puntuazioa" lines="inset" button [routerLink]="['/rankinga', rankingitem.id]">
           <ion-label>
-            {{rankingitem.Id}}&nbsp;-&nbsp;{{rankingitem.Izena}}&nbsp;-&nbsp;{{rankingitem.Puntuazioa}}
+           <b class="posicion">{{i+1}}</b> {{rankingitem.Izena}}<a class="right">{{rankingitem.Puntuazioa}}</a>
           </ion-label>
         </ion-item>
         <!-- <ion-item-options side="end">
