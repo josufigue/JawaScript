@@ -85,35 +85,30 @@ export class Tab3Page {
 
   async update() {
     const alert = await this.alertController.create({
-      header: 'Prompt!',
+      header: 'Izena aldatu',
       inputs: [
         {
           name: 'name1',
-          value: 'hello',
+          value: '',
           type: 'text',
           placeholder: this.Izena,
-          
           id : 'izena'
         },
       ],
       buttons: [
         {
-          text: 'Cancel',
+          text: 'Ezeztatu',
           role: 'cancel',
-          cssClass: 'secondary',
-          handler: () => {
-            console.log('Confirm Cancel');
-            this.rankingitem.Izena =  document.getElementById("izena").innerHTML;
-            console.log(this.rankingitem.Izena)
-          }
-        }, {
-          text: 'Ok',
+          cssClass: 'secondary'
+        }, 
+        {
+          text: 'Gorde',
           // handler: alertData => { //takes the data 
           //   console.log(alertData.name1);
           handler: async data => {
-            if ((document.getElementById("izena") as HTMLInputElement).value != "" || (document.getElementById("izena") as HTMLInputElement).value!= this.Izena) {
+            if (data.name1 != "" || data.name1 != this.Izena) {
               const loading = await this.loadingController.create({
-                message: 'Saving...'
+                message: 'Gordetzen...'
               });
               await loading.present();
               this.rankingitem.Izena =  data.name1;
@@ -123,7 +118,8 @@ export class Tab3Page {
               this.rankingService.updateRanking(this.rankingitem, this.gmail)
               
               await loading.dismiss();
-            } else {
+            } 
+            else {
               // invalid login 
               return false;
             }
