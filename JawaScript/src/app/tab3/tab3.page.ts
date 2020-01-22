@@ -108,13 +108,15 @@ export class Tab3Page {
           }
         }, {
           text: 'Ok',
+          // handler: alertData => { //takes the data 
+          //   console.log(alertData.name1);
           handler: async data => {
             if ((document.getElementById("izena") as HTMLInputElement).value != "" || (document.getElementById("izena") as HTMLInputElement).value!= this.Izena) {
               const loading = await this.loadingController.create({
                 message: 'Saving...'
               });
               await loading.present();
-              this.rankingitem.Izena =  document.getElementById("izena").innerHTML;
+              this.rankingitem.Izena =  data.name1;
               this.rankingitem.Id = this.gmail;
               this.rankingitem.Puntuazioa = this.puntuazioa;
               this.rankingitem.erabiltzaileId = this.user;
