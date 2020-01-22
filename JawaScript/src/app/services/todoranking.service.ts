@@ -13,7 +13,7 @@ export class TodorankingService {
   private ranking: Observable<rankingTask[]>;
 
   constructor(db: AngularFirestore) {
-    this.rankingCollection = db.collection<rankingTask>('ranking');
+    this.rankingCollection = db.collection<rankingTask>('ranking', ref => ref.orderBy('Puntuazioa', 'desc'));
     this.ranking = this.rankingCollection.snapshotChanges().pipe(map(
       actions => {
         return actions.map(a => {
