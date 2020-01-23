@@ -20,6 +20,9 @@ export class GalderaPage implements OnInit {
   primerRandom;
   loading;
 
+  timePassed: number = 0;
+  interval;
+
   erantzunak = [];
   puntuazioa = 0;
 
@@ -27,12 +30,12 @@ export class GalderaPage implements OnInit {
 
   ngOnInit() {
     this.galderakService.getAllGalderak().subscribe(res => {
+      this.startTimer();
       this.galderak = res;
       this.primerRandom = (Math.floor(Math.random() * this.galderak.length) + 1);
       console.log(this.galderak);
       this.randomOrderAnswer(this.primerRandom);
-    }
-    );
+    });
     /*(async () => {
       this.loading = await this.loadingController.create({
         message: 'Loading...'
@@ -95,6 +98,16 @@ export class GalderaPage implements OnInit {
     })();
   }
 
+  startTimer() {
+    this.interval = setInterval(() => {
+        this.timePassed++;
+    },1000)
+  }
+
+  pauseTimer() {
+    clearInterval(this.interval);
+  }
+
   clickAnswer(id) {
 
     (async () => {
@@ -106,7 +119,13 @@ export class GalderaPage implements OnInit {
       console.log("erantzunZuzen", erantzunZuzena);
       if (erantzuna == erantzunZuzena) {
         document.getElementById(id).style.backgroundColor = "green";
+        var audio = new Audio('../../assets/music/correctAnswer.mp3');
+        audio.play();
         this.puntuazioa++;
+      }
+      else{
+        var audio = new Audio('../../assets/music/wrongAnswer.mp3');
+        audio.play();
       }
       var jsonstring = { 'id': this.galderak[this.primerRandom].id, 'galdera': this.galderak[this.primerRandom].Galdera, 'erantzunZuzena': erantzunZuzena, 'erantzuna': erantzuna };
       this.erantzunak.push(JSON.stringify(jsonstring));
@@ -124,7 +143,9 @@ export class GalderaPage implements OnInit {
         }
       }
       if (this.ids.length == 10) {
-        console.log("JSON: " + this.erantzunak);
+        this.pauseTimer();
+        console.log("time: "+this.timePassed);
+        //console.log("JSON: " + this.erantzunak);
         this.router.navigateByUrl('/tabs/tab1');
       }
     })();
