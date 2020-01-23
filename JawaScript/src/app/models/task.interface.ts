@@ -10,4 +10,5 @@ export interface gald {
     Erantzun2: string;
     ErantzunZuzena: string;
     Galdera: string;
+    Irudia: string;
 }

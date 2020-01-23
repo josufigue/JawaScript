@@ -16,7 +16,8 @@ export class AddPage implements OnInit {
     Erantzun1: '',
     Erantzun2: '',
     ErantzunZuzena: '',
-    Galdera: ''
+    Galdera: '',
+    Irudia:''
   }
 
   constructor(private route: ActivatedRoute, private nav: NavController, private TodogalderakService: TodogalderakService, private loadingController: LoadingController) { }

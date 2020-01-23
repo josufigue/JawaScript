@@ -57,10 +57,17 @@ export class GalderaPage implements OnInit {
         message: 'Loading...'
       });
       await this.loading.present();
+      document.getElementById("irudiaSpan").innerHTML = "";
 
       this.ids.push(this.galderak[primerRandom].id);
       console.log(this.ids);
       await this.loading.dismiss();
+
+      if (this.galderak[primerRandom].Irudia != undefined) {
+        document.getElementById("irudiaSpan").innerHTML = "<img src='" + this.galderak[primerRandom].Irudia + "' style='max-width:200px;max-height:250px;margin-left:20%;margin-top:10%;margin-bottom:-10%;'/>"
+      }
+
+
       document.getElementById("galderaP").textContent = this.galderak[primerRandom].Galdera;
       switch (Math.floor(Math.random() * 6) + 1) {
         case 1:
@@ -100,8 +107,8 @@ export class GalderaPage implements OnInit {
 
   startTimer() {
     this.interval = setInterval(() => {
-        this.timePassed++;
-    },1000)
+      this.timePassed++;
+    }, 1000)
   }
 
   pauseTimer() {
@@ -123,7 +130,7 @@ export class GalderaPage implements OnInit {
         audio.play();
         this.puntuazioa++;
       }
-      else{
+      else {
         var audio = new Audio('../../assets/music/wrongAnswer.mp3');
         audio.play();
       }
@@ -144,7 +151,7 @@ export class GalderaPage implements OnInit {
       }
       if (this.ids.length == 10) {
         this.pauseTimer();
-        console.log("time: "+this.timePassed);
+        console.log("time: " + this.timePassed);
         //console.log("JSON: " + this.erantzunak);
         this.router.navigateByUrl('/tabs/tab1');
       }
