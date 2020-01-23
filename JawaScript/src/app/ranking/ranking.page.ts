@@ -8,26 +8,19 @@ import { Subscription } from 'rxjs';
   templateUrl: './ranking.page.html',
   styleUrls: ['./ranking.page.scss'],
 })
-export class RankingPage implements OnInit {
+export class RankingPage {
 
   ranking: rankingTask[];
   subscription: Subscription = new Subscription();
 
   constructor(private rankingService: TodorankingService) { }
 
-  ngOnInit() {
-   /* try{
-      this.subscription.unsubscribe();
-    }
-    catch(error){
-      console.log(error);
-    }*/
+  ionViewWillEnter(){
     this.subscription = this.rankingService.getAllRanking().subscribe(res => {
       this.ranking = res;
 
-      console.log(this.ranking);
+      console.log(document.getElementById("posicion"));
     });
-    
   }
 
   botonPlus() {
