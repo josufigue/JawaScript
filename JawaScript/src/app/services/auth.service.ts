@@ -70,7 +70,11 @@ export class AuthService {
         errorea = 'Sartutako pasahitza 6 karakterekoa izan behar da gutxienez';
         break;
       case 'The email address is already in use by another account.':
-        errorea = 'Sartutako emaila jadanik erabitzen da'
+        errorea = 'Sartutako emaila jadanik erabitzen da';
+        break;
+      case 'A network error (such as timeout, interrupted connection or unreachable host) has occurred.':
+        errorea = 'Ez zaude internetera konektatuta';
+        break;
     }
     const toast = await this.toastController.create({
       message: errorea,

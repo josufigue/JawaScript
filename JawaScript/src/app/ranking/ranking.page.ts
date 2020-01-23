@@ -18,8 +18,6 @@ export class RankingPage {
   ionViewWillEnter(){
     this.subscription = this.rankingService.getAllRanking().subscribe(res => {
       this.ranking = res;
-
-      console.log(document.getElementById("posicion"));
     });
   }
 

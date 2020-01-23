@@ -13,8 +13,12 @@
     <ion-list>
       <ion-item-sliding *ngFor="let rankingitem of ranking;let i=index">
         <ion-item *ngIf="rankingitem.Puntuazioa" lines="inset" button [routerLink]="['/rankinga', rankingitem.id]">
+          <img *ngIf="i+1 == 1" class="margenimg" src="../../assets/icon/1med.png">
+          <img *ngIf="i+1 == 2" class="margenimg" src="../../assets/icon/2med.png">
+          <img *ngIf="i+1 == 3" class="margenimg" src="../../assets/icon/3med.png">
+          <!-- <img *ngIf="i+1 != 0 && ranking[i]==ranking[i-1]" class="margenimg" src="../../assets/icon/3med.png"> -->
           <ion-label>
-           <b [ngClass]='i+1 == 1 ? "primero" : i+1 == 2 ? "segundo" : i+1 == 3 ? "tercero":"cuarto"' id="posicion" class="posicion">{{i+1}}</b> {{rankingitem.Izena}}<a class="right">{{rankingitem.Puntuazioa}}</a>
+           <b id="posicion" class="posicion">{{i+1}}</b> {{rankingitem.Izena}}<a class="right">{{rankingitem.Puntuazioa}}</a>
           </ion-label>
         </ion-item>
       </ion-item-sliding>
