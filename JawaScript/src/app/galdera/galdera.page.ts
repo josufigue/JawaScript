@@ -25,6 +25,7 @@ export class GalderaPage implements OnInit {
 
   erantzunak = [];
   puntuazioa = 0;
+  puntuazioTot;
 
   constructor(private galderakService: TodogalderakService, private loadingController: LoadingController, private router: Router) { }
 
@@ -152,6 +153,8 @@ export class GalderaPage implements OnInit {
       if (this.ids.length == 10) {
         this.pauseTimer();
         console.log("time: " + this.timePassed);
+        this.puntuazioTot = 1000/((this.puntuazioa+this.timePassed/10)+((10-this.puntuazioa)*3));
+        console.log(this.puntuazioTot);
         //console.log("JSON: " + this.erantzunak);
         this.router.navigateByUrl('/tabs/tab1');
       }
