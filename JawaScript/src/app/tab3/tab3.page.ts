@@ -21,7 +21,9 @@ export class Tab3Page {
     Id: '',
     Izena: '',
     Puntuazioa: 0,
-    erabiltzaileId: ''
+    erabiltzaileId: '',
+    jokatuta: false,
+    azkenengoPartida: []
   };
 
   subscription: Subscription = new Subscription();
@@ -32,6 +34,7 @@ export class Tab3Page {
   ionViewWillEnter() {
     this.subscription = this.rankingService.getErabiltzaile(firebase.auth().currentUser.email).subscribe(res => {
       this.rankingitem = res;
+
     });
   }
 

@@ -18,7 +18,9 @@ export class RegisterPage implements AfterContentInit {
     Id: '',
     Izena: '',
     Puntuazioa: 0,
-    erabiltzaileId: ''
+    erabiltzaileId: '',
+    jokatuta: false,
+    azkenengoPartida: []
   };
 
   constructor(private authSvc: AuthService, private router: Router, private TodorankingService: TodorankingService, private toastController: ToastController) { }

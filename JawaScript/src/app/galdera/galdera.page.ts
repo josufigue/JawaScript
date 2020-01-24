@@ -34,7 +34,9 @@ export class GalderaPage implements OnInit {
     Id: '',
     Izena: '',
     Puntuazioa: 0,
-    erabiltzaileId: ''
+    erabiltzaileId: '',
+    jokatuta: false,
+    azkenengoPartida: []
   };
 
   subscription: Subscription = new Subscription();
@@ -168,12 +170,17 @@ export class GalderaPage implements OnInit {
       if (this.ids.length == 10) {
         this.pauseTimer();
         console.log("time: " + this.timePassed);
-        this.puntuazioTot = 1000/((this.puntuazioa+this.timePassed/10)+((10-this.puntuazioa)*3));
+        if(this.puntuazioa!=0){
+          this.puntuazioTot = 1000/((this.puntuazioa+this.timePassed/10)+((10-this.puntuazioa)*3));
+        }
+        else{
+          this.puntuazioTot = 0;
+        }
         console.log(this.puntuazioTot);
         this.rankingitem.Puntuazioa += this.puntuazioTot;
-        console.log("JSON: " +this.rankingitem.Puntuazioa);
+        this.rankingitem.azkenengoPartida = this.erantzunak;
+        this.rankingitem.jokatuta = true;
         this.rankingService.updateRanking(this.rankingitem, this.rankingitem.Id)
-        
         this.router.navigateByUrl('/tabs/tab1');
       }
     })();

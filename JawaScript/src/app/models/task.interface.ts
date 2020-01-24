@@ -3,6 +3,8 @@ export interface rankingTask {
     Izena: string;
     Puntuazioa: number;
     erabiltzaileId: string;
+    jokatuta: boolean;
+    azkenengoPartida: Array<string>;
 }
 export interface gald {
     id?: string;
