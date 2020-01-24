@@ -23,7 +23,7 @@ export class Tab3Page {
     Puntuazioa: 0,
     erabiltzaileId: ''
   };
-
+  puntuazioa: number;
   subscription: Subscription = new Subscription();
 
   constructor(private alertController: AlertController, private rankingService: ErabiltzaileakService, private loadingController: LoadingController, private authSvc: AuthService, private router: Router, private afAuth: AngularFireAuth) {
@@ -32,6 +32,8 @@ export class Tab3Page {
   ionViewWillEnter() {
     this.subscription = this.rankingService.getErabiltzaile(firebase.auth().currentUser.email).subscribe(res => {
       this.rankingitem = res;
+      this.puntuazioa = Math.floor(this.rankingitem.Puntuazioa);
+      console.log(this.puntuazioa)
     });
   }
 
