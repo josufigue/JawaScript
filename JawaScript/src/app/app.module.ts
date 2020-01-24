@@ -16,11 +16,12 @@ import { AngularFirestoreModule } from 'angularfire2/firestore';
 import { AngularFireAuthModule } from '@angular/fire/auth';
 
 import { Media } from '@ionic-native/media/ngx';
+import { HttpModule } from '@angular/http';
 
 @NgModule({
   declarations: [AppComponent],
   entryComponents: [],
-  imports: [BrowserModule, IonicModule.forRoot(), AppRoutingModule, FormsModule, ReactiveFormsModule,
+  imports: [BrowserModule, IonicModule.forRoot(), HttpModule, AppRoutingModule, FormsModule, ReactiveFormsModule,
     AngularFireModule.initializeApp(environment.firebaseConfig), AngularFirestoreModule,
     AngularFireAuthModule],
   providers: [

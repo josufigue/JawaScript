@@ -4,6 +4,9 @@ import { rankingTask } from '../models/task.interface';
 import { ErabiltzaileakService } from '../services/erabiltzaileak.service';
 import { Subscription } from 'rxjs';
 
+import { Http } from '@angular/http';
+import { map } from 'rxjs/operators';
+
 @Component({
   selector: 'app-tab1',
   templateUrl: 'tab1.page.html',
@@ -25,11 +28,20 @@ export class Tab1Page {
 
   subscription: Subscription = new Subscription();
 
-  constructor(private rankingService: ErabiltzaileakService) {
+  constructor(private rankingService: ErabiltzaileakService, public http: Http) {
     document.getElementsByTagName("ion-tab-bar")[0].hidden = false;
+
+    let url = "http://worldtimeapi.org/api/timezone/Europe/London";
+
+    this.http.get(url).pipe(map(res => res.json())).subscribe(data => {
+
+        console.log(data);
+
+    });
     
     this.subscription = this.rankingService.getErabiltzaile(firebase.auth().currentUser.email).subscribe(res => {
       this.rankingitem = res;
+      
 
       if (this.rankingitem.jokatuta) {
         this.isProba = false;
