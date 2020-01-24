@@ -10,7 +10,13 @@
 
 <div class="portada">
   <ion-content>
+    <ion-item class="miranking">
+      <ion-label>
+        <b id="posicion" class="posicion">{{miranking}}</b> 
+        {{minombre}}<a class="right">{{formatNumber(mispuntos)}}</a></ion-label>
+      </ion-item>
     <ion-list>
+      <ion-item></ion-item>
       <ion-item-sliding *ngFor="let rankingitem of ranking;let i=index">
         <ion-item *ngIf="rankingitem.Puntuazioa" lines="inset" button [routerLink]="['/rankinga', rankingitem.id]">
           <img *ngIf="i+1 == 1" class="margenimg" src="../../assets/icon/1med.png">
@@ -20,7 +26,7 @@
           <ion-label>
             <b *ngIf="i+1 == 1" id="posicion" class="posicion">{{i+1}}</b>
             <b *ngIf="i != 0 && ranking[i].Puntuazioa == ranking[2].Puntuazioa" id="posicion" class="posicion">3</b>
-            <b *ngIf="i != 0 && ranking[i].Puntuazioa != ranking[2].Puntuazioa" id="posicion" class="posicion">{{i+1}}</b> {{rankingitem.Izena}}<a class="right">{{rankingitem.Puntuazioa}}</a>
+            <b *ngIf="i != 0 && ranking[i].Puntuazioa != ranking[2].Puntuazioa" id="posicion" class="posicion">{{i+1}}</b> {{rankingitem.Izena}}<a class="right">{{formatNumber(rankingitem.Puntuazioa)}}</a>
           </ion-label>
         </ion-item>
       </ion-item-sliding>
