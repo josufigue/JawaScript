@@ -23,7 +23,7 @@
     <div class="user-meta ion-text-center">
       <h3 class="playername">{{rankingitem.Izena}}</h3><ion-button (click)="update()" color="light"><ion-icon name="create"></ion-icon></ion-button>
       <h6 class="ranking">Current points:<ion-chip>
-          <ion-label>{{puntuazioa}}</ion-label>
+          <ion-label>{{formatNumber(rankingitem.Puntuazioa)}}</ion-label>
         </ion-chip>
       </h6>
     </div>

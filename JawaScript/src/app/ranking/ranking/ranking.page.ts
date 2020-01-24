@@ -18,6 +18,7 @@ export class RankingPage {
     erabiltzaileId: ''
   };
   rankId = null;
+  puntuazioa: number;
 
   constructor(private route: ActivatedRoute, private nav: NavController, private TodorankingService: TodorankingService, private loadingController: LoadingController) {
   }
@@ -27,6 +28,9 @@ export class RankingPage {
     if (this.rankId) {
       this.loadAll();
     }
+  }
+  formatNumber(i) {
+    return Math.floor(i);
   }
 
   async loadAll() {

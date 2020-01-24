@@ -20,7 +20,9 @@ export class RankingPage {
       this.ranking = res;
     });
   }
-
+  formatNumber(i) {
+    return Math.floor(i);
+  }
   botonPlus() {
     window.location.reload();
   }

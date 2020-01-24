@@ -32,9 +32,11 @@ export class Tab3Page {
   ionViewWillEnter() {
     this.subscription = this.rankingService.getErabiltzaile(firebase.auth().currentUser.email).subscribe(res => {
       this.rankingitem = res;
-      this.puntuazioa = Math.floor(this.rankingitem.Puntuazioa);
       console.log(this.puntuazioa)
     });
+  }
+  formatNumber(i) {
+    return Math.floor(i);
   }
 
   async update() {
