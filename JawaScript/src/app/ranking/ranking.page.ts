@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
 import { rankingTask } from '../models/task.interface';
-import { TodorankingService } from '../services/todoranking.service'
+import { TodorankingService } from '../services/todoranking.service';
 import { Subscription } from 'rxjs';
 @Component({
   selector: 'app-ranking',

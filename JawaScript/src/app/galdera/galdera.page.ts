@@ -1,12 +1,15 @@
 import { Component, OnInit } from '@angular/core';
 
-import { gald } from '../models/task.interface';
+import { gald, rankingTask } from '../models/task.interface';
 import { TodogalderakService } from '../services/todogalderak.service'
 import { delay } from 'rxjs/operators';
 import { LoadingController } from '@ionic/angular';
 import { Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { async } from '@angular/core/testing';
+import * as firebase from 'firebase/app';
+import { ErabiltzaileakService } from '../services/erabiltzaileak.service';
+
 @Component({
   selector: 'app-galdera',
   templateUrl: './galdera.page.html',
@@ -27,7 +30,16 @@ export class GalderaPage implements OnInit {
   puntuazioa = 0;
   puntuazioTot;
 
-  constructor(private galderakService: TodogalderakService, private loadingController: LoadingController, private router: Router) { }
+  rankingitem: rankingTask = {
+    Id: '',
+    Izena: '',
+    Puntuazioa: 0,
+    erabiltzaileId: ''
+  };
+
+  subscription: Subscription = new Subscription();
+
+  constructor(private galderakService: TodogalderakService, private rankingService: ErabiltzaileakService, private loadingController: LoadingController, private router: Router) { }
 
   ngOnInit() {
     this.galderakService.getAllGalderak().subscribe(res => {
@@ -36,6 +48,9 @@ export class GalderaPage implements OnInit {
       this.primerRandom = (Math.floor(Math.random() * this.galderak.length) + 1);
       console.log(this.galderak);
       this.randomOrderAnswer(this.primerRandom);
+    });
+    this.subscription = this.rankingService.getErabiltzaile(firebase.auth().currentUser.email).subscribe(res => {
+      this.rankingitem = res;
     });
     /*(async () => {
       this.loading = await this.loadingController.create({
@@ -155,7 +170,10 @@ export class GalderaPage implements OnInit {
         console.log("time: " + this.timePassed);
         this.puntuazioTot = 1000/((this.puntuazioa+this.timePassed/10)+((10-this.puntuazioa)*3));
         console.log(this.puntuazioTot);
-        //console.log("JSON: " + this.erantzunak);
+        this.rankingitem.Puntuazioa += this.puntuazioTot;
+        console.log("JSON: " +this.rankingitem.Puntuazioa);
+        this.rankingService.updateRanking(this.rankingitem, this.rankingitem.Id)
+        
         this.router.navigateByUrl('/tabs/tab1');
       }
     })();

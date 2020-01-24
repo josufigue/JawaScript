@@ -17,12 +17,6 @@ import { AlertController } from '@ionic/angular';
 })
 export class Tab3Page {
 
-  private erabiltzaile: rankingTask[];
-  user;
-  Izena: string;
-  puntuazioa;
-  gmail;
-
   rankingitem: rankingTask = {
     Id: '',
     Izena: '',
@@ -62,7 +56,7 @@ export class Tab3Page {
         {
           text: 'Gorde',
           handler: async data => {
-            if (data.name1 != "" || data.name1 != this.Izena) {
+            if (data.name1 != "" || data.name1 != this.rankingitem.Izena) {
               const loading = await this.loadingController.create({
                 message: 'Gordetzen...'
               });
