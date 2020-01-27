@@ -43,7 +43,11 @@ const routes: Routes = [
     path: 'tabs',
     loadChildren: () => import('./tabs/tabs.module').then(m => m.TabsPageModule),
     canActivate: [AuthGuard]
+  },  {
+    path: 'taldeak',
+    loadChildren: () => import('./taldeak/taldeak.module').then( m => m.TaldeakPageModule)
   }
+
 
 
 ];
