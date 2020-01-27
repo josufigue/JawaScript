@@ -14,3 +14,8 @@ export interface gald {
     Galdera: string;
     Irudia: string;
 }
+export interface taldea{
+    izena?: string;
+    partaideak: Array<string>;
+    sortzailea: string;
+}
