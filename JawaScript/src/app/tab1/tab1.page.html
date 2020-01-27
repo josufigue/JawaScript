@@ -14,12 +14,12 @@
   <div class="portada">
     
     <div class="punto">
-      <img *ngIf="isProba; else elseBlock" class="top1" src="../../assets/icon/coratickr.png">
-      <ng-template #elseBlock><img class="top1" src="../../assets/icon/coratickx.png"></ng-template>
+      <img id="coraImg" class="top1" src="../../assets/icon/coratickr.png">
     </div>
 <div class="centrar">
     <div class="ion-text-center">
-      <a id="jokatuBtn"><img src="../../assets/icon/img12.png"></a><br>
+      <a id="jokatuBtn" routerLink="/galdera"><img src="../../assets/icon/img12.png"></a><br>
+      <span id="jugadoSpan"></span>
       <ion-button (click)="presentAlert()"></ion-button>
       <div id="azkenengoPartidaDiv"><p id="azkenengoPartidaP"></p></div>
     </div></div>

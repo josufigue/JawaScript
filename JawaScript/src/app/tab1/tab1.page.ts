@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import * as firebase from 'firebase/app';
 import { rankingTask } from '../models/task.interface';
 import { ErabiltzaileakService } from '../services/erabiltzaileak.service';
@@ -15,10 +15,9 @@ import { AlertController } from '@ionic/angular';
   templateUrl: 'tab1.page.html',
   styleUrls: ['tab1.page.scss']
 })
-export class Tab1Page {
+export class Tab1Page implements OnInit{
 
   username;
-  isProba = true;
 
   rankingitem: rankingTask = {
     Id: '',
@@ -32,12 +31,21 @@ export class Tab1Page {
   subscription: Subscription = new Subscription();
   currentDate;
 
-  constructor(private alertController: AlertController, private rankingService: ErabiltzaileakService, public http: Http, private router: Router, private toastController: ToastController) {
+  constructor(private rankingService: ErabiltzaileakService, public http: Http, private router: Router, private toastController: ToastController, private alertController: AlertController) {
     document.getElementsByTagName("ion-tab-bar")[0].hidden = false;
 
+    
+  }
+  ngOnInit(){
+    if (this.rankingitem.jokatuta != this.currentDate){
+      console.log("enabled");
+      //document.getElementById("jokatuBtn").addEventListener('click', this.redirect);
+      document.getElementById("coraImg").setAttribute("src","../../assets/icon/coratickr.png");
+      document.getElementById("jugadoSpan").innerHTML= "";
+    }
+  }
+  ionViewWillEnter(){
     let url = "http://worldtimeapi.org/api/timezone/Europe/Madrid";
-
-
 
     this.subscription = this.rankingService.getErabiltzaile(firebase.auth().currentUser.email).subscribe(res => {
       this.rankingitem = res;
@@ -50,19 +58,22 @@ export class Tab1Page {
         console.log("Fecha BD: " + this.rankingitem.jokatuta);
         console.log("Fecha ahora: " + this.currentDate);
         if (this.rankingitem.jokatuta == this.currentDate) {
-          element.addEventListener('click', this.redirect);
+          element.style.visibility = "hidden";
+          document.getElementById("jugadoSpan").innerHTML= "<img src='../../assets/icon/img11.png' style='position:absolute;top:20%;left:5%'/>";
+          //element.removeEventListener('click', this.redirect);
+          document.getElementById("coraImg").setAttribute("src","../../assets/icon/coratickx.png");
           console.log("disabled");
         }
         else {
           console.log("enabled");
-          element.removeEventListener('click', this.redirect);
+          element.style.visibility = "visible";
+          document.getElementById("jugadoSpan").innerHTML= "";
+          //element.addEventListener('click', this.redirect);
+          document.getElementById("coraImg").setAttribute("src","../../assets/icon/coratickr.png");
         }
       });
 
 
-      if (this.rankingitem.jokatuta) {
-        this.isProba = false;
-      }
       var htmlString = "";
       for (var i = 0; i < this.rankingitem.azkenengoPartida.length; i++) {
         /*for(var j=0; j < this.rankingitem.azkenengoPartida[i].split(",").length; j++){
@@ -81,24 +92,20 @@ export class Tab1Page {
 
     });
   }
-  ionViewWillEnter() {
-    var element = document.getElementById("jokatuBtn");
-    if (this.rankingitem.jokatuta == this.currentDate) {
-      console.log("disabled");
-      element.removeAttribute("ng-reflect-router-link");
-      element.removeAttribute("routerlink");
-      element.removeAttribute("href");
-    }
-  }
-  redirect() {
+  /*redirect() {
     try {
-      this.router.navigateByUrl('/galdera');
+      if (this.rankingitem.jokatuta != this.currentDate) {
+        console.log(this.routerLink);
+        this.routerLink.navigate('/galdera');
+      }
+      
     }
-    catch{
+    catch(error){
+      console.log("Ya has jugado",error);
       //this.showToast();
     }
 
-  }
+  }*/
   async showToast() {
     const toast = await this.toastController.create({
       message: "Jadanik jolastu duzu",
