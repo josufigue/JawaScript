@@ -125,13 +125,24 @@ export class Tab1Page {
   }
   const alert = await this.alertController.create({
     header: 'Gaurko partida',
-    subHeader: JSON.parse(this.rankingitem.azkenengoPartida[0]).galdera,
     inputs: [
       {
         value: JSON.parse(this.rankingitem.azkenengoPartida[0]).galdera,
         type:'text',
         disabled: true,
-        id: 'izena'
+        id: 'galdera'
+      },
+      {
+        value: JSON.parse(this.rankingitem.azkenengoPartida[0]).erantzuna,
+        type:'text',
+        disabled: true,
+        id: 'erantzuna'
+      },
+      {
+        value: JSON.parse(this.rankingitem.azkenengoPartida[0]).erantzunZuzena,
+        type:'text',
+        disabled: true,
+        id: 'erantzuna',
       },
     ],
     buttons: ['OK']
