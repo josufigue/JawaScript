@@ -16,7 +16,7 @@ export class RankingPage {
     Izena: '',
     Puntuazioa: 0,
     erabiltzaileId: '',
-    jokatuta: false,
+    jokatuta: '',
     azkenengoPartida: []
   };
   rankId = null;
