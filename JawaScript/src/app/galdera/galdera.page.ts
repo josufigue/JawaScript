@@ -10,12 +10,15 @@ import { async } from '@angular/core/testing';
 import * as firebase from 'firebase/app';
 import { ErabiltzaileakService } from '../services/erabiltzaileak.service';
 
+import { Http } from '@angular/http';
+import { map } from 'rxjs/operators';
+
 @Component({
   selector: 'app-galdera',
   templateUrl: './galdera.page.html',
   styleUrls: ['./galdera.page.scss'],
 })
-export class GalderaPage implements OnInit {
+export class GalderaPage {
 
   private galderak: gald[];
   private ids = [];
@@ -35,24 +38,29 @@ export class GalderaPage implements OnInit {
     Izena: '',
     Puntuazioa: 0,
     erabiltzaileId: '',
-    jokatuta: false,
+    jokatuta: '',
     azkenengoPartida: []
   };
 
   subscription: Subscription = new Subscription();
+  currentDate;
 
-  constructor(private galderakService: TodogalderakService, private rankingService: ErabiltzaileakService, private loadingController: LoadingController, private router: Router) { }
+  constructor(private galderakService: TodogalderakService, private rankingService: ErabiltzaileakService, private loadingController: LoadingController, private router: Router, public http: Http) { }
 
-  ngOnInit() {
-    this.galderakService.getAllGalderak().subscribe(res => {
-      this.startTimer();
-      this.galderak = res;
-      this.primerRandom = (Math.floor(Math.random() * this.galderak.length) + 1);
-      console.log(this.galderak);
-      this.randomOrderAnswer(this.primerRandom);
-    });
+  ionViewWillEnter() {
     this.subscription = this.rankingService.getErabiltzaile(firebase.auth().currentUser.email).subscribe(res => {
       this.rankingitem = res;
+      this.startGalderak();
+    });
+    
+
+
+    let url = "http://worldtimeapi.org/api/timezone/Europe/Madrid";
+
+    this.http.get(url).pipe(map(res => res.json())).subscribe(data => {
+
+      this.currentDate = (data.datetime.split("T")[0]);
+
     });
     /*(async () => {
       this.loading = await this.loadingController.create({
@@ -65,8 +73,14 @@ export class GalderaPage implements OnInit {
 
     })();*/
   }
-  mensaje() {
-    console.log("Estoy despues del subscribe");
+  startGalderak() {
+    this.galderakService.getAllGalderak().subscribe(res => {
+      this.startTimer();
+      this.galderak = res;
+      this.primerRandom = (Math.floor(Math.random() * this.galderak.length) + 1);
+      console.log(this.galderak);
+      this.randomOrderAnswer(this.primerRandom);
+    });
   }
 
   randomOrderAnswer(primerRandom) {
@@ -161,6 +175,7 @@ export class GalderaPage implements OnInit {
         this.primerRandom = (Math.floor(Math.random() * this.galderak.length) + 1);
         if (this.ids.includes(this.galderak[this.primerRandom].id)) {
           this.i--;
+          console.log("Repeated ID");
         }
         else {
           this.randomOrderAnswer(this.primerRandom);
@@ -170,16 +185,16 @@ export class GalderaPage implements OnInit {
       if (this.ids.length == 10) {
         this.pauseTimer();
         console.log("time: " + this.timePassed);
-        if(this.puntuazioa!=0){
-          this.puntuazioTot = 1000/((this.puntuazioa+this.timePassed/10)+((10-this.puntuazioa)*3));
+        if (this.puntuazioa != 0) {
+          this.puntuazioTot = 1000 / ((this.puntuazioa + this.timePassed / 10) + ((10 - this.puntuazioa) * 3));
         }
-        else{
+        else {
           this.puntuazioTot = 0;
         }
         console.log(this.puntuazioTot);
         this.rankingitem.Puntuazioa += this.puntuazioTot;
         this.rankingitem.azkenengoPartida = this.erantzunak;
-        this.rankingitem.jokatuta = true;
+        this.rankingitem.jokatuta = this.currentDate;
         this.rankingService.updateRanking(this.rankingitem, this.rankingitem.Id)
         this.router.navigateByUrl('/tabs/tab1');
       }

@@ -3,7 +3,7 @@ export interface rankingTask {
     Izena: string;
     Puntuazioa: number;
     erabiltzaileId: string;
-    jokatuta: boolean;
+    jokatuta: string;
     azkenengoPartida: Array<string>;
 }
 export interface gald {
@@ -13,4 +13,9 @@ export interface gald {
     ErantzunZuzena: string;
     Galdera: string;
     Irudia: string;
+}
+export interface taldea{
+    izena?: string;
+    partaideak: Array<string>;
+    sortzailea: string;
 }

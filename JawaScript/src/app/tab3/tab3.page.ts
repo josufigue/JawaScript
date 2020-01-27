@@ -22,7 +22,7 @@ export class Tab3Page {
     Izena: '',
     Puntuazioa: 0,
     erabiltzaileId: '',
-    jokatuta: false,
+    jokatuta: '',
     azkenengoPartida: []
   };
   puntuazioa: number;
@@ -48,6 +48,7 @@ export class Tab3Page {
           name: 'name1',
           value: '',
           type: 'text',
+          disabled: true,
           placeholder:  this.rankingitem.Izena,
           id: 'izena'
         },

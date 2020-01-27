@@ -19,7 +19,7 @@ export class RegisterPage implements AfterContentInit {
     Izena: '',
     Puntuazioa: 0,
     erabiltzaileId: '',
-    jokatuta: false,
+    jokatuta: '',
     azkenengoPartida: []
   };
 
