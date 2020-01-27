@@ -51,8 +51,13 @@ a>p{
   margin-top: 12%;
   
 }
-#azkenengoPartidaDiv{
-  background-image: url("../../assets/icon/img1.PNG");
-  background-repeat: no-repeat;
-  padding: 8%;
+#azkenengoPartidaDiv{ 
+  margin-top: 10%;
+  margin-left: 10%;
+  margin-right: 12%;
+}
+.scroll{
+  width: 300px;
+  height: 150px;
+  overflow-y: scroll;
 }
