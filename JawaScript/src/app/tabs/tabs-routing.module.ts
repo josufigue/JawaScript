@@ -53,6 +53,17 @@ const routes: Routes = [
         ]
       },
       {
+        path: 'taldeak',
+        children: [
+          {
+            path: '',
+            loadChildren: () =>
+              import('../taldeak/taldeak.module').then(m => m.TaldeakPageModule),
+            //canActivate: [AuthGuard]
+          }
+        ]
+      },
+      {
         path: 'login',
         children: [
           {
