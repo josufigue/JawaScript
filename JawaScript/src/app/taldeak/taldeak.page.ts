@@ -17,8 +17,8 @@ export class TaldeakPage {
     sortzailea: '',
     partaideak: []
   };
-  algo: any;
-  cosa: any;
+  taldeakitem: any;
+  taldeak: any;
   misgrupos: taldea[] = [];
   subscription: Subscription = new Subscription();
   subscription1: Subscription = new Subscription();
@@ -30,20 +30,20 @@ export class TaldeakPage {
   }
   ionViewWillEnter() {
     this.subscription = this.taldeaservice.getAlltaldeak().subscribe(res => {
-      this.algo = res;
-      console.log(this.algo);
+      this.taldeakitem = res;
+      console.log(this.taldeakitem);
       console.log("User: "+ firebase.auth().currentUser.email);
 
 
-      for(this.i=0; this.i<this.algo.length; this.i++){
-        this.subscription1 = this.taldeaservice.getTaldeak(this.algo[this.i].izena).subscribe(res2 => {
-          this.cosa = res2;
-          console.log(this.cosa);
-          for(this.j=0; this.j<this.cosa.length; this.j++){
-            console.log("ID: "+this.cosa[this.j].Id)
-            if(firebase.auth().currentUser.email == this.cosa[this.j].Id){
+      for(this.i=0; this.i<this.taldeakitem.length; this.i++){
+        this.subscription1 = this.taldeaservice.getTaldeak(this.taldeakitem[this.i].izena).subscribe(res2 => {
+          this.taldeak = res2;
+          console.log(this.taldeak);
+          for(this.j=0; this.j<this.taldeak.length; this.j++){
+            console.log("ID: "+this.taldeak[this.j].Id)
+            if(firebase.auth().currentUser.email == this.taldeak[this.j].Id){
               
-              this.misgrupos.push(this.algo[this.j]);
+              this.misgrupos.push(this.taldeakitem[this.j]);
               console.log(this.misgrupos);
             }
           }
