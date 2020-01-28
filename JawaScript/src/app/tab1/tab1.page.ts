@@ -59,7 +59,7 @@ export class Tab1Page implements OnInit{
         console.log("Fecha ahora: " + this.currentDate);
         if (this.rankingitem.jokatuta == this.currentDate) {
           element.style.visibility = "hidden";
-          document.getElementById("jugadoSpan").innerHTML= "<img src='../../assets/icon/img11.png' style='position:absolute;top:20%;left:5%'/>";
+          document.getElementById("jugadoSpan").innerHTML= "<img src='../../assets/icon/img11.png' style='position:absolute;top:20%;left:5%;width:90%'/>";
           //element.removeEventListener('click', this.redirect);
           document.getElementById("coraImg").setAttribute("src","../../assets/icon/coratickx.png");
           console.log("disabled");
@@ -72,22 +72,6 @@ export class Tab1Page implements OnInit{
           document.getElementById("coraImg").setAttribute("src","../../assets/icon/coratickr.png");
         }
       });
-
-
-      var htmlString = "";
-      for (var i = 0; i < this.rankingitem.azkenengoPartida.length; i++) {
-        /*for(var j=0; j < this.rankingitem.azkenengoPartida[i].split(",").length; j++){
-          for(var k=0; k < this.rankingitem.azkenengoPartida[i].split(",")[j].split(":").length; k++){
-            console.log(this.rankingitem.azkenengoPartida[i].split(",")[j].split(":")[k]);
-          }
-        }*/
-        var thisJson = JSON.parse(this.rankingitem.azkenengoPartida[i]);
-        htmlString += "<b>Galdera: </b>" + thisJson.galdera + "<br/>";
-        htmlString += "<b>Erantzun zuzena: </b>" + thisJson.erantzunZuzena + "<br/>";
-        htmlString += "<b>Zure erantzuna: </b>" + thisJson.erantzuna + "<br/><br/>";
-      }
-      document.getElementById("azkenengoPartidaP").innerHTML = htmlString;
-
 
 
     });

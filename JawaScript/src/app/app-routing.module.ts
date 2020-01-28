@@ -46,6 +46,10 @@ const routes: Routes = [
   },  {
     path: 'taldeak',
     loadChildren: () => import('./taldeak/taldeak.module').then( m => m.TaldeakPageModule)
+  },
+  {
+    path: 'checkgalderak',
+    loadChildren: () => import('./checkgalderak/checkgalderak.module').then( m => m.CheckgalderakPageModule)
   }
 
 
