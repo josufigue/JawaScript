@@ -22,34 +22,33 @@ export class TaldeakPage {
   misgrupos: taldea[] = [];
   subscription: Subscription = new Subscription();
   subscription1: Subscription = new Subscription();
+
+  i;j;
+
   constructor(private taldeaservice: TaldeakService) {
 
   }
   ionViewWillEnter() {
     this.subscription = this.taldeaservice.getAlltaldeak().subscribe(res => {
       this.algo = res;
-      for(var i=0; i<this.algo.length; i++){
-        for(var j=0; j<this.algo[i].length.partaideak.length; j++){
-        // for(var j=0; j<this.algo[i].partaideak.length; j++)
-        console.log('hola '+JSON.stringify(this.algo[i].partaideak[j]))
-        // this.subscription1 = this.taldeaservice.gettaldeak(JSON.stringify(this.algo[i].partaideak)).subscribe(res => {
-        //   this.cosa = res;
-          if(JSON.stringify(this.algo[i].partaideak.some(e => e.Id === firebase.auth().currentUser.email))){
-            // this.misgrupos.push(this.cosa)
-            console.log('nooooooooooooooooooooooooooooooooo')
+      console.log(this.algo);
+      console.log("User: "+ firebase.auth().currentUser.email);
+
+
+      for(this.i=0; this.i<this.algo.length; this.i++){
+        this.subscription1 = this.taldeaservice.getTaldeak(this.algo[this.i].izena).subscribe(res2 => {
+          this.cosa = res2;
+          console.log(this.cosa);
+          for(this.j=0; this.j<this.cosa.length; this.j++){
+            console.log("ID: "+this.cosa[this.j].Id)
+            if(firebase.auth().currentUser.email == this.cosa[this.j].Id){
+              
+              this.misgrupos.push(this.algo[this.j]);
+              console.log(this.misgrupos);
+            }
           }
-          console.log(this.algo)
-        }
+        });
       }
-      
-      // for (var i=0; i < this.taldea.length; i++) {
-      //   for (var j=0; j < this.taldea[i].partaideak.length; j++) {
-      //     if(firebase.auth().currentUser.email == this.taldea[i].partaideak[j]){
-      //      this.misgrupos.push(this.taldea[i])
-      //      console.log(this.misgrupos)
-      //     }
-      //   }
-      // }
     });
   }
 }

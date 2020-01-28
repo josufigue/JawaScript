@@ -7,12 +7,13 @@
 
   <ion-content>
 
-    <div class="bloque" *ngFor="let grupos of misgrupos">
+    <div class="bloque">
 
       <div class="bloque2">
           
-        <div class="taldea" >
-          {{grupos.izena}}
+        <div class="taldea" *ngFor="let grupos of misgrupos">
+          Taldearen izena: {{grupos.izena}}<br/>
+          Sortzailea: {{grupos.sortzailea}}
         </div>
       </div>
     </div>

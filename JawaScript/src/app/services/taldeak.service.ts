@@ -25,7 +25,7 @@ export class TaldeakService {
   getAlltaldeak() {
     return this.taldeak;
   }
-  gettaldeak(taldea: string) {
+  getTaldeak(taldea: string) {
     return this.taldeakCollection.doc<taldea>(taldea).collection('partaideak').valueChanges();
   }
 
