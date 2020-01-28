@@ -48,7 +48,6 @@ export class Tab3Page {
           name: 'name1',
           value: '',
           type: 'text',
-          disabled: true,
           placeholder:  this.rankingitem.Izena,
           id: 'izena'
         },
