@@ -21,10 +21,11 @@ import { map } from 'rxjs/operators';
 export class GalderaPage {
 
   private galderak: gald[];
+  private galderakArray: gald[] = [];
   private ids = [];
-  private i: number;
   primerRandom;
   loading;
+  index: number = 0;
 
   timePassed: number = 0;
   interval;
@@ -50,9 +51,10 @@ export class GalderaPage {
   ionViewWillEnter() {
     this.subscription = this.rankingService.getErabiltzaile(firebase.auth().currentUser.email).subscribe(res => {
       this.rankingitem = res;
+
       this.startGalderak();
     });
-    
+
 
 
     let url = "http://worldtimeapi.org/api/timezone/Europe/Madrid";
@@ -62,28 +64,32 @@ export class GalderaPage {
       this.currentDate = (data.datetime.split("T")[0]);
 
     });
-    /*(async () => {
-      this.loading = await this.loadingController.create({
-        message: 'Loading...'
-      });
-      await this.loading.present();
-
-      var primerRandom = (Math.floor(Math.random() * this.galderak.length) + 1);
-      await this.randomOrderAnswer(primerRandom);
-
-    })();*/
   }
   startGalderak() {
     this.galderakService.getAllGalderak().subscribe(res => {
-      this.startTimer();
       this.galderak = res;
-      this.primerRandom = (Math.floor(Math.random() * this.galderak.length) + 1);
-      console.log(this.galderak);
-      this.randomOrderAnswer(this.primerRandom);
+
+
+      for (var i = 0; i < 10; i++) {
+        this.primerRandom = (Math.floor(Math.random() * this.galderak.length) + 1);
+        if (this.ids.includes(this.galderak[this.primerRandom].id)) {
+          i--;
+          console.log("Repeated ID: " + this.galderak[this.primerRandom].id);
+        }
+        else {
+          this.galderakArray.push(this.galderak[this.primerRandom]);
+          this.ids.push(this.galderak[this.primerRandom].id);
+        }
+      }
+      delete this.galderak;
+      console.log(this.galderakArray);
+
+      this.startTimer();
+      this.randomOrderAnswer();
     });
   }
 
-  randomOrderAnswer(primerRandom) {
+  randomOrderAnswer() {
     (async () => {
       this.loading = await this.loadingController.create({
         message: 'Loading...'
@@ -91,49 +97,47 @@ export class GalderaPage {
       await this.loading.present();
       document.getElementById("irudiaSpan").innerHTML = "";
 
-      this.ids.push(this.galderak[primerRandom].id);
-      console.log(this.ids);
+
       await this.loading.dismiss();
 
-      if (this.galderak[primerRandom].Irudia != undefined) {
-        document.getElementById("irudiaSpan").innerHTML = "<img src='" + this.galderak[primerRandom].Irudia + "' style='max-width:200px;max-height:250px;margin-left:20%;margin-top:10%;margin-bottom:-10%;'/>"
-      }
+        if (this.galderakArray[this.index].Irudia != undefined) {
+          document.getElementById("irudiaSpan").innerHTML = "<img src='" + this.galderakArray[this.index].Irudia + "' style='max-width:200px;max-height:250px;margin-left:20%;margin-top:10%;margin-bottom:-10%;'/>"
+        }
 
 
-      document.getElementById("galderaP").textContent = this.galderak[primerRandom].Galdera;
+      document.getElementById("galderaP").textContent = this.galderakArray[this.index].Galdera;
       switch (Math.floor(Math.random() * 6) + 1) {
         case 1:
-          document.getElementById("option1btn").textContent = this.galderak[primerRandom].Erantzun1;
-          document.getElementById("option2btn").textContent = this.galderak[primerRandom].Erantzun2;
-          document.getElementById("option3btn").textContent = this.galderak[primerRandom].ErantzunZuzena;
+          document.getElementById("option1btn").textContent = this.galderakArray[this.index].Erantzun1;
+          document.getElementById("option2btn").textContent = this.galderakArray[this.index].Erantzun2;
+          document.getElementById("option3btn").textContent = this.galderakArray[this.index].ErantzunZuzena;
           break;
         case 2:
-          document.getElementById("option1btn").textContent = this.galderak[primerRandom].Erantzun1;
-          document.getElementById("option2btn").textContent = this.galderak[primerRandom].ErantzunZuzena;
-          document.getElementById("option3btn").textContent = this.galderak[primerRandom].Erantzun2;
+          document.getElementById("option1btn").textContent = this.galderakArray[this.index].Erantzun1;
+          document.getElementById("option2btn").textContent = this.galderakArray[this.index].ErantzunZuzena;
+          document.getElementById("option3btn").textContent = this.galderakArray[this.index].Erantzun2;
           break;
         case 3:
-          document.getElementById("option1btn").textContent = this.galderak[primerRandom].Erantzun2;
-          document.getElementById("option2btn").textContent = this.galderak[primerRandom].Erantzun1;
-          document.getElementById("option3btn").textContent = this.galderak[primerRandom].ErantzunZuzena;
+          document.getElementById("option1btn").textContent = this.galderakArray[this.index].Erantzun2;
+          document.getElementById("option2btn").textContent = this.galderakArray[this.index].Erantzun1;
+          document.getElementById("option3btn").textContent = this.galderakArray[this.index].ErantzunZuzena;
           break;
         case 4:
-          document.getElementById("option1btn").textContent = this.galderak[primerRandom].Erantzun2;
-          document.getElementById("option2btn").textContent = this.galderak[primerRandom].ErantzunZuzena;
-          document.getElementById("option3btn").textContent = this.galderak[primerRandom].Erantzun1;
+          document.getElementById("option1btn").textContent = this.galderakArray[this.index].Erantzun2;
+          document.getElementById("option2btn").textContent = this.galderakArray[this.index].ErantzunZuzena;
+          document.getElementById("option3btn").textContent = this.galderakArray[this.index].Erantzun1;
           break;
         case 5:
-          document.getElementById("option1btn").textContent = this.galderak[primerRandom].ErantzunZuzena;
-          document.getElementById("option2btn").textContent = this.galderak[primerRandom].Erantzun2;
-          document.getElementById("option3btn").textContent = this.galderak[primerRandom].Erantzun1;
+          document.getElementById("option1btn").textContent = this.galderakArray[this.index].ErantzunZuzena;
+          document.getElementById("option2btn").textContent = this.galderakArray[this.index].Erantzun2;
+          document.getElementById("option3btn").textContent = this.galderakArray[this.index].Erantzun1;
           break;
         case 6:
-          document.getElementById("option1btn").textContent = this.galderak[primerRandom].ErantzunZuzena;
-          document.getElementById("option2btn").textContent = this.galderak[primerRandom].Erantzun1;
-          document.getElementById("option3btn").textContent = this.galderak[primerRandom].Erantzun2;
+          document.getElementById("option1btn").textContent = this.galderakArray[this.index].ErantzunZuzena;
+          document.getElementById("option2btn").textContent = this.galderakArray[this.index].Erantzun1;
+          document.getElementById("option3btn").textContent = this.galderakArray[this.index].Erantzun2;
           break;
       }
-      console.log(this.ids.length);
     })();
   }
 
@@ -151,11 +155,12 @@ export class GalderaPage {
 
     (async () => {
 
+      
 
       var erantzuna = document.getElementById(id).textContent;
       console.log("erantzuna", erantzuna);
-      var erantzunZuzena = this.galderak[this.primerRandom].ErantzunZuzena;
-      console.log("erantzunZuzen", erantzunZuzena);
+      var erantzunZuzena = this.galderakArray[this.index].ErantzunZuzena;
+      console.log("erantzunZuzena", erantzunZuzena);
       if (erantzuna == erantzunZuzena) {
         document.getElementById(id).style.backgroundColor = "green";
         var audio = new Audio('../../assets/music/correctAnswer.mp3');
@@ -166,23 +171,12 @@ export class GalderaPage {
         var audio = new Audio('../../assets/music/wrongAnswer.mp3');
         audio.play();
       }
-      var jsonstring = { 'id': this.galderak[this.primerRandom].id, 'galdera': this.galderak[this.primerRandom].Galdera, 'erantzunZuzena': erantzunZuzena, 'erantzuna': erantzuna };
+      var jsonstring = { 'id': this.galderakArray[this.index].id, 'galdera': this.galderakArray[this.index].Galdera, 'erantzunZuzena': erantzunZuzena, 'erantzuna': erantzuna };
       this.erantzunak.push(JSON.stringify(jsonstring));
 
+      this.index++;
 
-      this.i = this.ids.length - 1;
-      for (this.i; this.i < 9; this.i++) {
-        this.primerRandom = (Math.floor(Math.random() * this.galderak.length) + 1);
-        if (this.ids.includes(this.galderak[this.primerRandom].id)) {
-          this.i--;
-          console.log("Repeated ID");
-        }
-        else {
-          this.randomOrderAnswer(this.primerRandom);
-          break;
-        }
-      }
-      if (this.ids.length == 10) {
+      if (this.index == 10) {
         this.pauseTimer();
         console.log("time: " + this.timePassed);
         if (this.puntuazioa != 0) {
@@ -197,6 +191,9 @@ export class GalderaPage {
         this.rankingitem.jokatuta = this.currentDate;
         this.rankingService.updateRanking(this.rankingitem, this.rankingitem.Id)
         this.router.navigateByUrl('/tabs/tab1');
+      }
+      else{
+        this.randomOrderAnswer();
       }
     })();
   }
