@@ -26,7 +26,7 @@ export class TaldeakService {
     return this.taldeak;
   }
   gettaldeak(taldea: string) {
-    return this.taldeakCollection.doc<taldea>(taldea).valueChanges();
+    return this.taldeakCollection.doc<taldea>(taldea).collection('partaideak').valueChanges();
   }
 
   updatetaldeak(taldea: taldea, izena: string) {
