@@ -18,3 +18,7 @@ export interface taldea{
     izena?: string;
     sortzailea: string;
 }
+export interface partaideak{
+    Id?: string
+    izena: string
+}
