@@ -40,6 +40,10 @@ export class MitaldeService {
     return this.taldeakCollection.doc(id).set(taldeak);
   }
 
+  addpartaideak(taldeak: taldea, id: string, userId: string) {
+    return this.taldeakCollection.doc(id).collection('partaideak').doc(userId).set(taldeak);
+  }
+
   remove(izena: string) {
     return this.taldeakCollection.doc(izena).delete();
   }

@@ -67,7 +67,7 @@ export class Tab1Page implements OnInit{
           element.style.visibility = "visible";
           document.getElementById("jugadoSpan").innerHTML= "";
           //element.addEventListener('click', this.redirect);
-          //document.getElementById("coraImg").setAttribute("src","../../assets/icon/coratickr.png");
+         
         }
       });
 

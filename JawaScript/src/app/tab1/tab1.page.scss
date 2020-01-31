@@ -3,7 +3,7 @@
   overflow: hidden;
 }
 #hola{
-background-color: rgb(209, 209, 209);
+  background-color: #cac7c7;
 }
 #letra{
   color:black;
@@ -22,7 +22,8 @@ p{
   background-image: none!important;
 }
 .portada{
-  background-color: #fdfbfbe3;
+  padding-top: 18%;
+  background-color:rgb(236, 236, 236);
 width: 100%;
 height: 100%;
 }
@@ -46,19 +47,11 @@ a>p{
 .punto{
   height: 10%;
 }
-.centrar{
-  margin-top: 12%;
-  
-}
+
 #azkenengoPartidaDiv{ 
   margin-top: 25%;
   margin-left: 10%;
   margin-right: 12%;
-}
-.scroll{
-  width: 300px;
-  height: 150px;
-  overflow-y: scroll;
 }
 .alert-input-group{
   background-color: blue!important;
@@ -66,60 +59,11 @@ a>p{
 .top2{
   margin-top:10%;
 }
-page-home {
 
-  ion-navbar{
-      width: 100%;
+  p{
+    font-size: 30px;
   }
-      
-  ion-title img{
-      padding-left: 10px;
-  }
-  
-  img.logo{
-      padding-left: 110px;
-      height: 20px;
-  }
+
+ 
   
   
-  p.title{
-      font-size: 15px!important;
-      padding-top: 10px;
-      padding-left: 110px;
-  }
-  
-  ion-content{
-      margin-left: 100px;;
-      margin-top: 40px;
-  }
-  
-  ion-grid{
-      text-align: center;
-  }
-  
-  ion-row.header-row{
-      text-align: center;
-      font-weight: bold;
-  
-  }
-  
-  ion-col.header-col{
-      background-color: #eee;
-      border:1px solid #ddd!important;
-  }
-  
-  ion-col.info-col{
-      background-color: #fff;
-      border:1px solid #ddd!important;
-  
-  }
-  
-  ion-col.col-align{
-      padding-top: 14px;
-  }
-  
-  .button{
-      width: 90px;
-  }
-  
-  }

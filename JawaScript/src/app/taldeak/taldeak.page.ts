@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { taldea } from '../models/task.interface';
+import { taldea, partaideak } from '../models/task.interface';
 import { TaldeakService } from '../services/taldeak.service';
 import { Subscription } from 'rxjs';
 import { auth } from 'firebase';
@@ -17,6 +17,10 @@ export class TaldeakPage {
     izena: '',
     sortzailea: ''
   };
+  partaidea: partaideak={
+    Id: '',
+    izena: ''
+  }
   taldeakitem: any;
   taldeak: any;
   misgrupos: taldea[] = [];
@@ -44,7 +48,7 @@ export class TaldeakPage {
         this.subscription1 = this.taldeaservice.getPartaideak(this.taldeakitem[this.i].izena).subscribe(res2 => {
           this.taldeak = res2;
           for (this.j = 0; this.j < this.taldeak.length; this.j++) {
-            if (firebase.auth().currentUser.email == this.taldeak[this.j].Id && this.taldeak[this.j].Id!= undefined) {
+            if (firebase.auth().currentUser.email == this.taldeak[this.j].Id && this.taldeak[this.j].Id != undefined && this.taldeakitem[this.h].izena != undefined) {
               console.log(this.misgrupos)
               this.misgrupos.push(this.taldeakitem[this.h]);
             }
@@ -67,6 +71,12 @@ export class TaldeakPage {
           type: 'text',
           placeholder: 'Taldearen izena'
         },
+        {
+          name: 'partaideak',
+          value: '',
+          type: 'text',
+          placeholder: 'partaidea'
+        },
       ],
       buttons: [
         {
@@ -82,7 +92,9 @@ export class TaldeakPage {
             });
             await loading.present();
             this.taldeaitem.izena = data.name1;
+            var a = data.partaideak;
             this.taldeakService.addtaldeak(this.taldeaitem, this.taldeaitem.izena)
+            this.taldeakService.addpartaideak(this.taldeaitem, this.taldeaitem.izena, a)
             await loading.dismiss();
             this.ionViewWillEnter();
           }
