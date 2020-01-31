@@ -7,7 +7,11 @@ const routes: Routes = [
   {
     path: '',
     component: TaldeakPage
+  },  {
+    path: 'taldea',
+    loadChildren: () => import('./taldea/taldea.module').then( m => m.TaldeaPageModule)
   }
+
 ];
 
 @NgModule({

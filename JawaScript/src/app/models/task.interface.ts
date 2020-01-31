@@ -16,6 +16,5 @@ export interface gald {
 }
 export interface taldea{
     izena?: string;
-    partaideak: Array<string>;
     sortzailea: string;
 }

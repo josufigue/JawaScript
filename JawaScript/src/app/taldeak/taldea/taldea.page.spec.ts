@@ -1,19 +1,19 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { IonicModule } from '@ionic/angular';
 
-import { TaldeaComponent } from './taldea.component';
+import { TaldeaPage } from './taldea.page';
 
-describe('TaldeaComponent', () => {
-  let component: TaldeaComponent;
-  let fixture: ComponentFixture<TaldeaComponent>;
+describe('TaldeaPage', () => {
+  let component: TaldeaPage;
+  let fixture: ComponentFixture<TaldeaPage>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ TaldeaComponent ],
+      declarations: [ TaldeaPage ],
       imports: [IonicModule.forRoot()]
     }).compileComponents();
 
-    fixture = TestBed.createComponent(TaldeaComponent);
+    fixture = TestBed.createComponent(TaldeaPage);
     component = fixture.componentInstance;
     fixture.detectChanges();
   }));

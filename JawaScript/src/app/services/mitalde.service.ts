@@ -7,7 +7,7 @@ import { map } from 'rxjs/operators';
 @Injectable({
   providedIn: 'root'
 })
-export class TaldeakService {
+export class MitaldeService {
   private taldeakCollection: AngularFirestoreCollection<taldea>;
   private taldeak: Observable<taldea[]>;
   constructor(db: AngularFirestore) { 

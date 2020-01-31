@@ -11,14 +11,16 @@
 
       <div class="bloque2">
           
-        <div class="taldea" *ngFor="let grupos of misgrupos">
-          Taldearen izena: {{grupos.izena}}<br/>
-          Sortzailea: {{grupos.sortzailea}}
+        <div *ngFor="let grupos of misgrupos" class="taldea">
+          <div id="hola" [routerLink]="['/taldea', grupos.izena]">
+            Taldearen izena: {{grupos.izena}}<br/>
+            Sortzailea: {{grupos.sortzailea}}
+        </div>
         </div>
       </div>
     </div>
     <ion-fab color="medium" vertical="bottom" horizontal="end" slot="fixed">
-      <ion-fab-button color="primary">
+      <ion-fab-button (click)="creategroup()" color="primary">
         <ion-icon name="add"></ion-icon>
       </ion-fab-button>
     </ion-fab>

@@ -16,9 +16,7 @@ import { AlertController } from '@ionic/angular';
   styleUrls: ['tab1.page.scss']
 })
 export class Tab1Page implements OnInit{
-
   username;
-
   rankingitem: rankingTask = {
     Id: '',
     Izena: '',
