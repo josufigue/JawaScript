@@ -40,7 +40,7 @@ export class Tab1Page implements OnInit{
     if (this.rankingitem.jokatuta != this.currentDate){
       console.log("enabled");
       //document.getElementById("jokatuBtn").addEventListener('click', this.redirect);
-      document.getElementById("coraImg").setAttribute("src","../../assets/icon/coratickr.png");
+     
       document.getElementById("jugadoSpan").innerHTML= "";
     }
   }
@@ -61,7 +61,7 @@ export class Tab1Page implements OnInit{
           element.style.visibility = "hidden";
           document.getElementById("jugadoSpan").innerHTML= "<img src='../../assets/icon/img11.png' style='position:absolute;top:20%;left:5%;width:90%'/>";
           //element.removeEventListener('click', this.redirect);
-          document.getElementById("coraImg").setAttribute("src","../../assets/icon/coratickx.png");
+    
           console.log("disabled");
         }
         else {
