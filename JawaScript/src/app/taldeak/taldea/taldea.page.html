@@ -8,4 +8,9 @@
   <div *ngFor="let personas of misgrupos" class="taldea">
     {{personas.Id}}<br/>
   </div>
+  <ion-fab color="medium" vertical="bottom" horizontal="end" slot="fixed">
+    <ion-fab-button color="medium" routerLink="/tabs/taldeak" routerDirection="forward">
+      <ion-icon name="close"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
 </ion-content>

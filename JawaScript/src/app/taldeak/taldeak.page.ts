@@ -29,6 +29,12 @@ export class TaldeakPage {
 
   }
   ionViewWillEnter() {
+    this.misgrupos=[]
+    this.subscription.unsubscribe()
+    this.subscription1.unsubscribe()
+    this.taldeakitem=[]
+    this.h=0
+    document.getElementById("grupo").innerHTML=''
     this.subscription = this.taldeaservice.getAlltaldeak().subscribe(res => {
       this.taldeakitem = res;
       for (this.i = 0; this.i < this.taldeakitem.length; this.i++) {
@@ -44,10 +50,6 @@ export class TaldeakPage {
         });
       }
     });
-  }
-  ionViewWillLeave(){
-    this.subscription.unsubscribe();
-    this.subscription1.unsubscribe();
   }
   async creategroup() {
     const alert = await this.alertController.create({
@@ -75,6 +77,7 @@ export class TaldeakPage {
             await loading.present();
             this.taldeaitem.izena = data.name1;
             this.taldeakService.addtaldeak(this.taldeaitem, this.taldeaitem.izena)
+            this.ionViewWillEnter();
             await loading.dismiss();
           }
         }
