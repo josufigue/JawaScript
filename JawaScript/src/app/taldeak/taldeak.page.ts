@@ -1,10 +1,11 @@
 import { Component, OnInit } from '@angular/core';
-import { taldea, partaideak } from '../models/task.interface';
+import { taldea, partaideak, rankingTask } from '../models/task.interface';
 import { TaldeakService } from '../services/taldeak.service';
 import { Subscription } from 'rxjs';
 import { auth } from 'firebase';
 import * as firebase from 'firebase/app';
 import { AlertController, LoadingController } from '@ionic/angular';
+import { TodorankingService } from '../services/todoranking.service';
 
 @Component({
   selector: 'app-taldeak',
@@ -17,10 +18,18 @@ export class TaldeakPage {
     izena: '',
     sortzailea: ''
   };
-  partaidea: partaideak={
+  partaidea: partaideak = {
     Id: '',
     izena: ''
   }
+  rankingitem: rankingTask = {
+    Id: '',
+    Izena: '',
+    Puntuazioa: 0,
+    erabiltzaileId: '',
+    jokatuta: '',
+    azkenengoPartida: []
+  };
   taldeakitem: any;
   taldeak: any;
   misgrupos: taldea[] = [];
@@ -29,17 +38,17 @@ export class TaldeakPage {
 
   i; j; h = 0;
 
-  constructor(private loadingController: LoadingController, private taldeakService: TaldeakService, private alertController: AlertController, private taldeaservice: TaldeakService) {
+  constructor(private TodorankingService: TodorankingService, private loadingController: LoadingController, private taldeakService: TaldeakService, private alertController: AlertController, private taldeaservice: TaldeakService) {
 
   }
   ionViewWillEnter() {
-    this.misgrupos.length=0
+    this.misgrupos.length = 0
     this.subscription.unsubscribe()
     this.subscription1.unsubscribe()
-    this.taldeakitem=[]
-    this.h=0
-    this.i=0
-    this.j=0
+    this.taldeakitem = []
+    this.h = 0
+    this.i = 0
+    this.j = 0
     this.taldeak = []
     this.subscription = this.taldeaservice.getAlltaldeak().subscribe(res => {
       this.taldeakitem = res;
@@ -48,18 +57,20 @@ export class TaldeakPage {
         this.subscription1 = this.taldeaservice.getPartaideak(this.taldeakitem[this.i].izena).subscribe(res2 => {
           this.taldeak = res2;
           for (this.j = 0; this.j < this.taldeak.length; this.j++) {
-            if (firebase.auth().currentUser.email == this.taldeak[this.j].Id && this.taldeak[this.j].Id != undefined && this.taldeakitem[this.h].izena != undefined) {
-              console.log(this.misgrupos)
-              this.misgrupos.push(this.taldeakitem[this.h]);
-            }
-            else{
-              console.log('nosalto')
-            }
+      
+              if (firebase.auth().currentUser.email == this.taldeak[this.j].Id && this.taldeak[this.j].Id != undefined && this.taldeakitem[this.h].izena != undefined) {
+                console.log(this.misgrupos)
+                this.misgrupos.push(this.taldeakitem[this.h]);
+              }
           }
           this.h++;
         });
       }
     });
+    
+    this.TodorankingService.getRanking(firebase.auth().currentUser.email).subscribe(res => {
+      this.rankingitem = res;
+    })
   }
   async creategroup() {
     const alert = await this.alertController.create({
@@ -70,12 +81,6 @@ export class TaldeakPage {
           value: '',
           type: 'text',
           placeholder: 'Taldearen izena'
-        },
-        {
-          name: 'partaideak',
-          value: '',
-          type: 'text',
-          placeholder: 'partaidea'
         },
       ],
       buttons: [
@@ -92,11 +97,15 @@ export class TaldeakPage {
             });
             await loading.present();
             this.taldeaitem.izena = data.name1;
-            var a = data.partaideak;
+            this.taldeaitem.sortzailea = firebase.auth().currentUser.email;
+
+            console.log(this.rankingitem.Izena.toString())
+            this.partaidea.Id = firebase.auth().currentUser.email;
+            this.partaidea.izena = this.rankingitem.Izena;
             this.taldeakService.addtaldeak(this.taldeaitem, this.taldeaitem.izena)
-            this.taldeakService.addpartaideak(this.taldeaitem, this.taldeaitem.izena, a)
+            this.taldeakService.addpartaideak(this.partaidea, this.taldeaitem.izena, this.partaidea.Id)
             await loading.dismiss();
-            this.ionViewWillEnter();
+            // location.reload();
           }
         }
       ]
