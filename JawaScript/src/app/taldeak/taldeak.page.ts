@@ -29,12 +29,14 @@ export class TaldeakPage {
 
   }
   ionViewWillEnter() {
-    this.misgrupos=[]
+    this.misgrupos.length=0
     this.subscription.unsubscribe()
     this.subscription1.unsubscribe()
     this.taldeakitem=[]
     this.h=0
-    document.getElementById("grupo").innerHTML=''
+    this.i=0
+    this.j=0
+    this.taldeak = []
     this.subscription = this.taldeaservice.getAlltaldeak().subscribe(res => {
       this.taldeakitem = res;
       for (this.i = 0; this.i < this.taldeakitem.length; this.i++) {
@@ -42,8 +44,12 @@ export class TaldeakPage {
         this.subscription1 = this.taldeaservice.getPartaideak(this.taldeakitem[this.i].izena).subscribe(res2 => {
           this.taldeak = res2;
           for (this.j = 0; this.j < this.taldeak.length; this.j++) {
-            if (firebase.auth().currentUser.email == this.taldeak[this.j].Id) {
+            if (firebase.auth().currentUser.email == this.taldeak[this.j].Id && this.taldeak[this.j].Id!= undefined) {
+              console.log(this.misgrupos)
               this.misgrupos.push(this.taldeakitem[this.h]);
+            }
+            else{
+              console.log('nosalto')
             }
           }
           this.h++;
@@ -77,8 +83,8 @@ export class TaldeakPage {
             await loading.present();
             this.taldeaitem.izena = data.name1;
             this.taldeakService.addtaldeak(this.taldeaitem, this.taldeaitem.izena)
-            this.ionViewWillEnter();
             await loading.dismiss();
+            this.ionViewWillEnter();
           }
         }
       ]
