@@ -59,10 +59,12 @@ export class TaldeaPage {
       for (this.i = 0; this.i < this.taldeakitem.length; this.i++) {
         this.subscription1 = this.taldeakService.getPartaideak(this.taldeId).subscribe(res => {
           this.taldeak = res;
-          if (this.taldeak[this.h] != undefined) {
-            this.misgrupos.push(this.taldeak[this.h]);
+          for (this.j = 0; this.j < this.taldeak.length; this.j++) {
+            if (this.taldeak[this.h] != undefined) {
+              this.misgrupos.push(this.taldeak[this.h]);
+            }
+            this.h++;
           }
-          this.h++;
         });
       }
       this.taldeId = ""
@@ -102,8 +104,8 @@ export class TaldeaPage {
 
             this.subscription = this.rankingService.getAllRanking().subscribe(res => {
               this.ranking = res;
-              for(var i=0; i<this.ranking.length; i++){
-                if(data.name1 == this.ranking[i].Id){
+              for (var i = 0; i < this.ranking.length; i++) {
+                if (data.name1 == this.ranking[i].Id) {
                   this.partaidea.Id = this.ranking[i].Id;
                   this.partaidea.izena = this.ranking[i].Izena;
                   this.taldeakService.addpartaideak(this.partaidea, this.taldeId, this.partaidea.Id)
@@ -111,11 +113,8 @@ export class TaldeaPage {
               }
             });
 
-
-            // this.taldeakService.addtaldeak(this.taldeaitem, this.taldeaitem.izena)
-            // this.taldeakService.addpartaideak(this.partaidea, this.taldeaitem.izena, this.partaidea.Id)
+            this.ngOnInit();
             await loading.dismiss();
-            // location.reload();
           }
         }
       ]
