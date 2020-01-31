@@ -16,9 +16,7 @@ import { AlertController } from '@ionic/angular';
   styleUrls: ['tab1.page.scss']
 })
 export class Tab1Page implements OnInit{
-
   username;
-
   rankingitem: rankingTask = {
     Id: '',
     Izena: '',
@@ -69,7 +67,7 @@ export class Tab1Page implements OnInit{
           element.style.visibility = "visible";
           document.getElementById("jugadoSpan").innerHTML= "";
           //element.addEventListener('click', this.redirect);
-          document.getElementById("coraImg").setAttribute("src","../../assets/icon/coratickr.png");
+          //document.getElementById("coraImg").setAttribute("src","../../assets/icon/coratickr.png");
         }
       });
 

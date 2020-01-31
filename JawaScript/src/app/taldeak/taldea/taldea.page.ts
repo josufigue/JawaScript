@@ -40,8 +40,10 @@ export class TaldeaPage {
       this.taldeakitem = res;
       for (this.i = 0; this.i < this.taldeakitem.length; this.i++) {
         this.subscription = this.taldeakService.getPartaideak(this.taldeId).subscribe(res => {
-          this.taldeakitem = res;
-          this.misgrupos.push(this.taldeakitem[this.h]);
+          this.taldeak = res;
+          if(this.taldeak[this.h] != undefined){
+            this.misgrupos.push(this.taldeak[this.h]);
+          }
           this.h++;
         });
       }
