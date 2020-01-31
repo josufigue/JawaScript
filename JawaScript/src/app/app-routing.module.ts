@@ -23,17 +23,17 @@ const routes: Routes = [
   {
     path: 'rankinga/:id',
     loadChildren: './ranking/ranking/ranking.module#RankingPageModule',
-    canActivate: [AuthGuard]
+    //canActivate: [AuthGuard]
   },
   {
     path: 'ranking',
     loadChildren: './ranking/ranking.module#RankingPageModule',
-    canActivate: [AuthGuard]
+    //canActivate: [AuthGuard]
   },
   {
     path: 'rankingD',
     loadChildren: './ranking/ranking/ranking.module#RankingPageModule',
-    canActivate: [AuthGuard]
+    //canActivate: [AuthGuard]
   },
   {
     path: 'add',
@@ -42,7 +42,7 @@ const routes: Routes = [
   {
     path: 'tabs',
     loadChildren: () => import('./tabs/tabs.module').then(m => m.TabsPageModule),
-    canActivate: [AuthGuard]
+    //canActivate: [AuthGuard]
   },
   {
     path: 'taldeak',
