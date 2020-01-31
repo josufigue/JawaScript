@@ -25,16 +25,19 @@ export class TaldeakService {
   getAlltaldeak() {
     return this.taldeak;
   }
-  getTaldeak(taldea: string) {
+  getPartaideak(taldea: string) {
     return this.taldeakCollection.doc<taldea>(taldea).collection('partaideak').valueChanges();
+  }
+  getTaldea(taldea: string) {
+    return this.taldeakCollection.doc<taldea>(taldea).valueChanges();
   }
 
   updatetaldeak(taldea: taldea, izena: string) {
     return this.taldeakCollection.doc(izena).update(taldea)
   }
 
-  addtaldeak(taldeak: taldea) {
-    return this.taldeakCollection.add(taldeak);
+  addtaldeak(taldeak: taldea, id: string) {
+    return this.taldeakCollection.doc(id).set(taldeak);
   }
 
   remove(izena: string) {
