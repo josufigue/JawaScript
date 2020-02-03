@@ -11,8 +11,12 @@
   <ion-fab color="medium" vertical="bottom" horizontal="end" slot="fixed">
     <ion-fab-button color="medium" routerLink="/tabs/taldeak" routerDirection="forward">
       <ion-icon name="close"></ion-icon>
-    </ion-fab-button><ion-fab-button (click)="creategroup()" color="primary">
+    </ion-fab-button>
+    <ion-fab-button (click)="creategroup()" color="primary">
       <ion-icon name="add"></ion-icon>
+    </ion-fab-button>
+    <ion-fab-button (click)="deletegroup()" color="danger">
+      <ion-icon name="remove"></ion-icon>
     </ion-fab-button>
   </ion-fab>
 </ion-content>

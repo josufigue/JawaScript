@@ -8,6 +8,7 @@ import * as firebase from 'firebase/app';
 import { TaldeakService } from 'src/app/services/taldeak.service';
 import { TodorankingService } from '../../services/todoranking.service';
 import { createNgModule } from '@angular/compiler/src/core';
+import { Router } from '@angular/router';
 
 
 @Component({
@@ -43,7 +44,7 @@ export class TaldeaPage {
   i; j; h = 0;
   taldeId = null;
 
-  constructor(private rankingService: TodorankingService, private alertController: AlertController, private taldeaservice: TaldeakService, private route: ActivatedRoute, private loadingController: LoadingController, private taldeakService: MitaldeService) { }
+  constructor(private router: Router, private rankingService: TodorankingService, private alertController: AlertController, private taldeaservice: TaldeakService, private route: ActivatedRoute, private loadingController: LoadingController, private taldeakService: MitaldeService) { }
 
   ngOnInit() {
     this.taldeId = this.route.snapshot.params['id'];
@@ -121,7 +122,25 @@ export class TaldeaPage {
     });
     await alert.present();
   }
-  añadir() {
-
-  }
+  async deletegroup() {
+    const alert = await this.alertController.create({
+      header: 'Taldetik irten?',
+      buttons: [
+        {
+          text: 'Ez',
+          role: 'cancel',
+          cssClass: 'secondary'
+        },
+        {
+          text: 'Bai',
+          handler: async data => {
+            this.taldeakService.remove(this.route.snapshot.params['id'], firebase.auth().currentUser.email)
+            this.ngOnInit();
+            this.router.navigateByUrl('/tabs/tab1')
+          }
+        }
+      ]
+    });
+    await alert.present();
+    }
 }
