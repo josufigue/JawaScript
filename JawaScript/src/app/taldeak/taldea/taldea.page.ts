@@ -93,29 +93,27 @@ export class TaldeaPage {
         {
           text: 'Gorde',
           handler: async data => {
-            this.taldeId = this.route.snapshot.params['id'];
             const loading = await this.loadingController.create({
               message: 'Gordetzen...'
             });
             await loading.present();
             this.taldeaitem.sortzailea = firebase.auth().currentUser.email;
-
-            console.log(this.rankingitem.Izena.toString())
-
-
             this.subscription = this.rankingService.getAllRanking().subscribe(res => {
               this.ranking = res;
+              this.taldeId = this.route.snapshot.params['id'];
               for (var i = 0; i < this.ranking.length; i++) {
                 if (data.name1 == this.ranking[i].Id) {
                   this.partaidea.Id = this.ranking[i].Id;
                   this.partaidea.izena = this.ranking[i].Izena;
+                  console.log(this.partaidea)
                   this.taldeakService.addpartaideak(this.partaidea, this.taldeId, this.partaidea.Id)
                 }
               }
             });
 
-            this.ngOnInit();
+            // this.ngOnInit();
             await loading.dismiss();
+            location.reload()
           }
         }
       ]
