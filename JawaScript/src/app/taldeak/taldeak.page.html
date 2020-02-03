@@ -1,6 +1,6 @@
-<ion-header>
+<ion-header >
   <ion-toolbar>
-    <ion-title>taldeak</ion-title>
+    <ion-title id="hola">taldeak</ion-title>
   </ion-toolbar>
 </ion-header>
 
@@ -12,7 +12,7 @@
       <div class="bloque2">
           
         <div *ngFor="let grupos of misgrupos" class="taldea">
-          <div id="hola" [routerLink]="['/taldea', grupos.izena]">
+          <div [routerLink]="['/taldea', grupos.izena]">
             Taldearen izena: {{grupos.izena}}<br/>
             Sortzailea: {{grupos.sortzailea}}
         </div>
