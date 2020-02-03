@@ -57,7 +57,7 @@ export class GalderaPage {
 
 
 
-    let url = "http://worldtimeapi.org/api/timezone/Europe/Madrid";
+    let url = "https://worldtimeapi.org/api/timezone/Europe/Madrid";
 
     this.http.get(url).pipe(map(res => res.json())).subscribe(data => {
 

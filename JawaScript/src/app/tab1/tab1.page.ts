@@ -43,7 +43,7 @@ export class Tab1Page implements OnInit{
     }
   }
   ionViewWillEnter(){
-    let url = "http://worldtimeapi.org/api/timezone/Europe/Madrid";
+    let url = "https://worldtimeapi.org/api/timezone/Europe/Madrid";
 
     this.subscription = this.rankingService.getErabiltzaile(firebase.auth().currentUser.email).subscribe(res => {
       this.rankingitem = res;
