@@ -40,7 +40,9 @@ export class GalderaPage {
     Puntuazioa: 0,
     erabiltzaileId: '',
     jokatuta: '',
-    azkenengoPartida: []
+    azkenengoPartida: [],
+    azkenengoDenbora: 0,
+    azkenengoPuntuazioa: 0
   };
 
   subscription: Subscription = new Subscription();
@@ -189,6 +191,8 @@ export class GalderaPage {
         this.rankingitem.Puntuazioa += this.puntuazioTot;
         this.rankingitem.azkenengoPartida = this.erantzunak;
         this.rankingitem.jokatuta = this.currentDate;
+        this.rankingitem.azkenengoDenbora = this.timePassed;
+        this.rankingitem.azkenengoPuntuazioa = this.puntuazioTot;
         this.rankingService.updateRanking(this.rankingitem, this.rankingitem.Id)
         this.router.navigateByUrl('/tabs/tab1');
       }
