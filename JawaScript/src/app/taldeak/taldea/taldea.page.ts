@@ -115,9 +115,8 @@ export class TaldeaPage {
               }
             });
 
-            // this.ngOnInit();
             await loading.dismiss();
-            // location.reload()
+            this.reloadapp();
           }
         }
       ]
@@ -148,5 +147,10 @@ export class TaldeaPage {
     
   formatNumber(i) {
     return Math.floor(i);
+  }
+  reloadapp(){
+    setTimeout(function () {
+    location.reload()
+  }, 250)
   }
 }
