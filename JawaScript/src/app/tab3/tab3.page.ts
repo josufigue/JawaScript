@@ -23,7 +23,9 @@ export class Tab3Page {
     Puntuazioa: 0,
     erabiltzaileId: '',
     jokatuta: '',
-    azkenengoPartida: []
+    azkenengoPartida: [],
+    azkenengoDenbora: 0,
+    azkenengoPuntuazioa: 0
   };
   puntuazioa: number;
   subscription: Subscription = new Subscription();

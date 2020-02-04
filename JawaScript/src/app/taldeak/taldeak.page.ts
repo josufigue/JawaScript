@@ -27,7 +27,9 @@ export class TaldeakPage {
     Puntuazioa: 0,
     erabiltzaileId: '',
     jokatuta: '',
-    azkenengoPartida: []
+    azkenengoPartida: [],
+    azkenengoDenbora: 0,
+    azkenengoPuntuazioa: 0
   };
   taldeakitem: any;
   taldeak: any;

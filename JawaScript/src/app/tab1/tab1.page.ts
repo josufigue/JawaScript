@@ -23,7 +23,9 @@ export class Tab1Page implements OnInit{
     Puntuazioa: 0,
     erabiltzaileId: '',
     jokatuta: '',
-    azkenengoPartida: []
+    azkenengoPartida: [],
+    azkenengoDenbora: 0,
+    azkenengoPuntuazioa: 0
   };
 
   subscription: Subscription = new Subscription();
