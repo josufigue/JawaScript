@@ -23,4 +23,5 @@ export interface taldea{
 export interface partaideak{
     Id?: string
     izena: string
+    puntuazioa: number
 }
