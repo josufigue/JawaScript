@@ -5,6 +5,8 @@ export interface rankingTask {
     erabiltzaileId: string;
     jokatuta: string;
     azkenengoPartida: Array<string>;
+    azkenengoDenbora: number;
+    azkenengoPuntuazioa: number;
 }
 export interface gald {
     id?: string;
