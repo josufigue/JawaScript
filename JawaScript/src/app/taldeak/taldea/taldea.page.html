@@ -6,7 +6,9 @@
 
 <ion-content>
   <div *ngFor="let personas of misgrupos" class="taldea">
-    {{personas.izena}}<br/>
+    <div [routerLink]="['/rankinga', personas.Id]">
+      {{personas.izena}} {{formatNumber(personas.puntuazioa)}}<br/>
+    </div>
   </div>
   <ion-fab color="medium" vertical="bottom" horizontal="end" slot="fixed">
     <ion-fab-button color="medium" routerLink="/tabs/taldeak" routerDirection="forward">

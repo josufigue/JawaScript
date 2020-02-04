@@ -28,7 +28,8 @@ export class TaldeaPage {
   };
   partaidea: partaideak = {
     Id: '',
-    izena: ''
+    izena: '',
+    puntuazioa: null
   }
   private taldea: taldea[];
   taldeaitem: taldea = {
@@ -105,6 +106,7 @@ export class TaldeaPage {
                 if (data.name1 == this.ranking[i].Id) {
                   this.partaidea.Id = this.ranking[i].Id;
                   this.partaidea.izena = this.ranking[i].Izena;
+                  this.partaidea.puntuazioa = this.ranking[i].Puntuazioa
                   console.log(this.partaidea)
                   this.taldeakService.addpartaideak(this.partaidea, this.taldeId, this.partaidea.Id)
                 }
@@ -113,7 +115,7 @@ export class TaldeaPage {
 
             // this.ngOnInit();
             await loading.dismiss();
-            location.reload()
+            // location.reload()
           }
         }
       ]
@@ -141,4 +143,8 @@ export class TaldeaPage {
     });
     await alert.present();
     }
+    
+  formatNumber(i) {
+    return Math.floor(i);
+  }
 }

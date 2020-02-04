@@ -19,7 +19,8 @@ export class TaldeakPage {
   };
   partaidea: partaideak = {
     Id: '',
-    izena: ''
+    izena: '', 
+    puntuazioa: 0
   }
   rankingitem: rankingTask = {
     Id: '',

@@ -34,13 +34,10 @@ export class MitaldeService {
     return this.taldeakCollection.doc<taldea>(taldea).valueChanges();
   }
 
-  updatetaldeak(taldea: taldea, izena: string) {
-    return this.taldeakCollection.doc(izena).update(taldea)
+  updatetaldeak(taldea: partaideak, izena: string, userId: string) {
+    return this.taldeakCollection.doc(izena).collection('partaideak').doc(userId).update(taldea)
   }
 
-  addtaldeak(taldeak: taldea, id: string) {
-    return this.taldeakCollection.doc(id).set(taldeak);
-  }
   addpartaideak(taldeak: partaideak, id: string, userId: string) {
     return this.taldeakCollection.doc(id).collection('partaideak').doc(userId).set(taldeak);
   }
