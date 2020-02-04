@@ -58,7 +58,7 @@ export class TaldeakPage {
         this.subscription1 = this.taldeaservice.getPartaideak(this.taldeakitem[this.i].izena).subscribe(res2 => {
           this.taldeak = res2;
           for (this.j = 0; this.j < this.taldeak.length; this.j++) {
-            if (firebase.auth().currentUser.email == this.taldeak[this.j].Id && this.taldeak[this.j].Id != undefined && this.taldeakitem[this.h].izena != undefined) {
+            if (firebase.auth().currentUser.email == this.taldeak[this.j].Id && this.taldeak[this.j].Id != undefined) {
               console.log(this.misgrupos)
               this.misgrupos.push(this.taldeakitem[this.h]);
             }
